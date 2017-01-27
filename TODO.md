@@ -56,12 +56,15 @@
   * get all the rows from the file from the router.get settings in the todo.js file. In the tutorial, because the dude did a res.render('all'), there was an error when looking on the browser. That is because the file "all" was not set up in the views directory
   * in the views directory set up a file called all.hbs.
   https://www.youtube.com/watch?v=WYa47JkZH_U
+
 * [X] Add bootstrap
   * go to bootstrap / getting started. copy the <link> tag and paste it at layout.hbs. The layout is the container for all the views that are handled in handlebars.
   * In the layout.hbs, he pasted the bootstrap link along with the existing css link.
   * Gave to body the "container" class
   * went to components to get a list-group ul. Then pasted it in the all.hbs page. He is rendering the {{title}} inside the <li> tags
   * he added margin-top in the body tag from the style.css file.
+
+23:40
 * [X] Show new form with /todo/new
   * Went to the todo.js file to create a new route for the form
   * Created a new.hbs file in the "views" folder

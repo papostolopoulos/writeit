@@ -1,0 +1,79 @@
+
+
+<!-- HEADER SECTION -->
+<header>
+
+  <!-- LOGO -->
+  <div id="logoDiv">
+    <a href="/">
+      <span class="fa fa-pencil-square-o" aria-hidden="true">writeIt</span>
+
+    </a>
+  </div>
+
+  <!-- RIGHT SECTION AREA -->
+  <div class="rightHeaderArea">
+    <a href="#" type="button" name="button" class="newArticleButton">
+      rightHeaderArea
+    </a>
+
+  </div>
+</header>
+
+
+<!-- MAIN SECTION -->
+<main>
+  <section>
+    <article class="" id="newArticleArea">
+      <form class="" id="newArticle" action="/articles" method="post">
+        <table>
+          <tr>
+            <td>
+              <h1>Title:</h1>
+            </td>
+            <td>
+              <label for="newArticleTitle">
+                <input type="text" name="title" value="" id="newArticleTitle" placeholder="Enter your title" required>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Body:
+            </td>
+            <td>
+              <label for="newArticleBody">
+                <textarea name="body" rows="15" cols="100" id="newArticleBody" placeholder="writeIt here" required></textarea>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="newArticleSubmit">
+                  <button type="submit" name="button" id="newArticleSubmit">writeIt</button>
+              </label>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </form>
+
+    </article>
+
+
+  </section>
+</main>
+
+
+
+
+<!-- // #### articles
+// | field    | datatype         |
+// | :        | :                |
+// | id       | int              |
+// | user_id  | int (fk) - users |
+// | title    | string           |
+// | body     | string           |
+// | date     | datetime         | -->

@@ -1,8 +1,400 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+  ========================================
+  Main areas
+  ========================================
+*/
+
+html {
+  background-color: rgb(255, 255, 255);
 }
 
-a {
-  color: #00B7FF;
+html,
+body {
+	/*001-Box Model*/
+	height:100%;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
 }
+
+body {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	font: 120%/120% "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: rgb(82, 24, 20);
+	/*004-Backgrounds*/
+}
+
+#container {
+	/*001-Box Model*/
+	width: 80%;
+	margin: 0 auto;
+	min-height:100%;
+	border-left: solid 2px rgb(187, 52, 47);
+	border-right: solid 2px rgb(187, 52, 47);
+	/*002-Positioning*/
+	position:relative;
+	/*003-Typography*/
+	/*004-Backgrounds*/
+	background-color: rgb(245, 216, 214);
+}
+
+/*
+  ========================================
+  Blocks
+  ========================================
+*/
+
+header {
+	/*001-Box Model*/
+	height: 100px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+	background-color: rgb(187, 52, 47);
+}
+
+.rightHeaderArea {
+	text-align: center;
+	line-height: 100px;
+}
+
+#logoDiv {
+	/*001-Box Model*/
+	height: inherit;
+	padding-left: 20px;
+	width:auto;
+	/*002-Positioning*/
+	float: left;
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+#logoDiv a {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	font-size: 400%;
+	/*004-Backgrounds*/
+	text-decoration: none;
+}
+
+#logoDiv a .fa-pencil-square-o {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	color: rgb(255, 255, 255);
+	line-height: 100px;
+	/*004-Backgrounds*/
+}
+
+#logoDiv a:hover .fa-pencil-square-o {
+	/*001-Box Model*/
+	color: rgb(221, 164, 72);
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+
+#loginArea {
+	/*001-Box Model*/
+	height: inherit;
+	padding: 10px 10px 0 20px;
+	/*002-Positioning*/
+	float: right;
+	/*003-Typography*/
+	text-align: right;
+	/*004-Backgrounds*/
+}
+
+main {
+	/*001-Box Model*/
+	padding-bottom:100px; /* Height of the footer element */
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+section {
+	/*001-Box Model*/
+	padding: 20px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+.loginPageForms input{
+	/*001-Box Model*/
+	border: 2px solid rgb(221, 164, 72);
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+.loginPageForms table tr td {
+	/*001-Box Model*/
+	padding: 0 10px;
+	text-align: right;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+#signupForm table tr td {
+	/*001-Box Model*/
+	padding: 5px 5px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+#signupArea {
+	/*001-Box Model*/
+	padding: 50px 0;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+#signupArea table{
+	/*001-Box Model*/
+	margin: 0 auto;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+#loginForm table {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	float: right;
+	vertical-align: bottom;
+	/*003-Typography*/
+	/*004-Backgrounds*/
+	color: rgb(255, 255, 255);
+}
+
+#loginForm label {
+	/*001-Box Model*/
+	padding-left: 5px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+}
+
+label input:focus {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+	background-color: rgb(221, 164, 72);
+}
+
+footer {
+	/*001-Box Model*/
+	width:100%;
+	height:100px;
+	/*002-Positioning*/
+	position:absolute;
+	bottom:0;
+	left:0;
+	/*003-Typography*/
+	color: rgb(255, 255, 255);
+	line-height: 100px;
+	text-align: center;
+	font-size: 120%;
+	font-weight: bold;
+	/*004-Backgrounds*/
+	background-color: rgb(187, 52, 47);
+}
+
+footer a {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	/*004-Backgrounds*/
+}
+
+footer a:hover {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	/*004-Backgrounds*/
+	color: rgb(221, 164, 72);
+}
+
+/*
+  ========================================
+  Inlines
+  ========================================
+*/
+button {
+	/*001-Box Model*/
+	border: 2px solid rgb(221, 164, 72);
+	border-radius: 5px;
+	padding: 8px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	font-size: inherit;
+	color: rgb(255, 255, 255);
+	/*004-Backgrounds*/
+	background-color: rgb(142, 40, 37);
+}
+
+button:hover {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	cursor: pointer;
+	/*004-Backgrounds*/
+	background-color: rgb(221, 164, 72);
+}
+
+a[type="button"] {
+	/*001-Box Model*/
+	border: 2px solid rgb(221, 164, 72);
+	border-radius: 5px;
+	padding: 8px;
+	/*002-Positioning*/
+	/*003-Typography*/
+	font-size: inherit;
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	/*004-Backgrounds*/
+	background-color: rgb(142, 40, 37);
+}
+
+a[type="button"]:hover {
+	/*001-Box Model*/
+	/*002-Positioning*/
+	/*003-Typography*/
+	cursor: pointer;
+	/*004-Backgrounds*/
+	background-color: rgb(221, 164, 72);
+}
+/*
+  ========================================
+  002-Positioning
+  ========================================
+*/
+
+
+
+/*001-Box Model*/
+/*002-Positioning*/
+/*003-Typography*/
+/*004-Backgrounds*/
+
+
+.articleArea {
+	/*001-Box Model*/
+	margin-bottom: 10px;
+	padding: 15px;
+	border: solid 2px rgb(187, 52, 47);
+	/*002-Positioning*/
+	/*003-Typography*/
+	text-align: justify;
+	/*004-Backgrounds*/
+	background-color: rgb(255,255,255);
+}
+
+.articleArea h3 {
+	text-align: center;
+	font-size: 150%;
+}
+
+.articleArea h4 {
+	text-align: left;
+	font-weight: 600;
+}
+
+.articleArea h5 {
+	text-align: left;
+	font-size: 80%;
+	font-style: italic;
+	margin-top: 10px;
+}
+
+.articleArea p {
+	font-family: times;
+}
+
+
+/*
+  ========================================
+  003-Typography
+  ========================================
+*/
+
+
+ #signupPage {
+	text-align: center;
+}
+
+#signupPage h1 {
+	font-size: 280%;
+	font-weight: bold;
+	padding: 10px;
+}
+
+#signupPage h2 {
+	font-size: 200%;
+	line-height: 120%;
+	margin: 10px 0;
+}
+
+#signupPage h3 {
+	font-size: 150%;
+	margin: 10px 0;
+	line-height: 120%;
+}
+
+#signupHeading {
+	text-align: center;
+}
+
+.loginPageForms input{
+	font-size: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  ========================================
+  Colors
+  ========================================
+*/
+
+/*Purple: Pomp and power
+HEX: #8d6a9f
+RGB: rgb(141, 106, 159)
+
+Gray: Lavender Gray
+HEX: #c5cbd3
+RGB: rgb(197, 203, 211)
+for the font: #2c323a, rgb(44, 50, 58)
+
+blue: pewter blue
+HEX: #8cbcb9
+RGB: rgb(140, 188, 185)
+
+yellow: Indian Yellow
+HEX: #dda448
+RGB: rgb(221, 164, 72)
+
+Red: International Orange (Golden Gate Bridge)
+HEX: #bb342f
+RGB: rgb(187, 52, 47)*/

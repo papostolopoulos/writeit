@@ -1,0 +1,53 @@
+
+
+<!-- HEADER SECTION -->
+<header>
+
+  <!-- LOGO -->
+  <div id="logoDiv">
+    <a href="/">
+      <span class="fa fa-pencil-square-o" aria-hidden="true">writeIt</span>
+
+    </a>
+  </div>
+
+  <!-- RIGHT SECTION AREA -->
+  <div class="rightHeaderArea">
+    <a href="./new" type="button" name="button" class="newArticleButton">
+      New posting
+    </a>
+
+  </div>
+
+</header>
+
+<span class="fa fa-pencil-square-o" aria-hidden="true">writeIt</span>
+
+<!-- MAIN SECTION -->
+<main>
+  <section>
+
+    {{#each postings}}
+    <article class="articleArea">
+      <h3>{{title}}</h3>
+      <h4>posted by: {{user_id}}.</h4>
+      <h5>Date posted: {{date}}</h5>
+      <p>{{body}}</p>
+    </article>
+    {{/each}}
+
+
+  </section>
+</main>
+
+
+
+
+<!-- // #### articles
+// | field    | datatype         |
+// | :        | :                |
+// | id       | int              |
+// | user_id  | int (fk) - users |
+// | title    | string           |
+// | body     | string           |
+// | date     | datetime         | -->
