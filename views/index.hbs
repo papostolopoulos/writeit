@@ -1,104 +1,114 @@
-<!-- HEADER SECTION -->
-<header>
-
-  <!-- LOGO -->
-  <div id="logoDiv">
-    <a href="/">
-      <span class="fa fa-pencil-square-o" aria-hidden="true">writeIt</span>
-
-    </a>
-  </div>
-
-  <!-- LOGIN AREA -->
-  <div id="loginArea">
-    <form id="loginForm" class="loginPageForms" action="/articles" method="post">
-      <table>
-
-        <tr class="loginTableHeadings">
-          <td>Email:</td>
-          <td>Password:</td>
-          <td>&nbsp;</td>
-        </tr>
-
-        <tr class="loginTableHeadings">
-          <td>
-            <label for="loginEmail">
-              <input type="email" name="email" value="" placeholder="Enter your email" required>
-            </label>
-          </td>
-          <td>
-            <label for="loginPassword">
-              <input type="password" name="password" value="" placeholder="Enter your password" required>
-            </label>
-          </td>
-          <td>
-            <label for="loginSubmit">
-              <button type="submit" name="loginButton" id="loginButton">Login</button>
-            </label>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
-
-</header>
 
 
-<!-- MAIN SECTION -->
-<main>
-  <section id="signupPage">
+  <section class="homepageSections" id="titleSection">
     <h1><span class="fa fa-pencil-square-o" aria-hidden="true">{{title}}</span></h1>
     <h2>A blog space to write pretty much about anything</h2>
-
-    <!-- SIGN UP AREA -->
-    <div id="signupArea">
-      <h3 id="signupHeading">New to <span class="fa fa-pencil-square-o" aria-hidden="true">{{title}}</span>? Welcome! <br> Sign up to create a new account.</h3>
-      <form id="signupForm" class="loginPageForms" action="/users" method="post">
-        form here
-        <table>
-
-          <tr>
-            <td>Choose your user name:</td>
-            <td>
-              <label for="signupUserName">
-                <input type="text" name="username" id="signupUserName" value="" placeholder="Type your user name" required>
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Enter your email address:</td>
-            <td>
-              <label for="signupEmail">
-                <input type="email" name="email" value="" id="signupEmail" placeholder="Type your email" required>
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Enter your password:</td>
-            <td>
-              <label for="signupPassword">
-                <input type="password" name="password" value="" id="signupPassword" placeholder="Type your password" required>
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td>&nbsp;</td>
-            <td>
-              <label for="signupSubmit">
-                <button type="submit" name="signupButton" id="signupButton">Sign up</button>
-              </label>
-            </td>
-          </tr>
-
-        </table>
-      </form>
-    </div>
-
-    <!-- RANDOM BUTTON -->
-    <button type="button" name="button">Postings</button>
-
   </section>
-</main>
+
+  <div id="loginSignupDiv">
+
+    <!-- LOG IN SECTION -->
+    <section class="homepageSections" id="loginSection">
+      <div id="loginAreaDiv">
+                <h3 id="signupHeading">Existing user? <br> Come on in!</h3>
+                <form id="loginForm" class="loginPageForms" action="/users/:username" method="post">
+                  <table>
+                    <tbody>
+                      <tr class="loginTableHeadings">
+                        <td>Email:</td>
+                        <td>
+                          <label for="loginEmail">
+                            <input type="email" name="email" value="" placeholder="Enter your email" required>
+                          </label>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Password:</td>
+                        <td>
+                          <label for="loginPassword">
+                            <input type="password" name="password" value="" placeholder="Enter your password" required>
+                          </label>
+                        </td>
+                      </tr>
+
+                      <tr class="loginTableHeadings">
+                        <td>&nbsp;</td>
+                        <td>
+                          <label for="loginSubmit">
+                            <button type="submit" name="loginButton" id="loginButton">Login</button>
+                          </label>
+                        </td>
+                      </tr>
+                    </tbody>
+
+
+
+                  </table>
+                </form>
+      </div>
+    </section>
+
+
+    <!-- SIGN UP SECTION -->
+    <section class="homepageSections" id="signupSection">
+
+      <!-- SIGN UP AREA -->
+      <div id="signupAreaDiv">
+        <h3 id="signupHeading">New to <span class="fa fa-pencil-square-o" aria-hidden="true">{{title}}</span>? Welcome! <br> Sign up to create a new account.</h3>
+        <form id="signupForm" class="loginPageForms" action="/users" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Choose your user name:</td>
+                <td>
+                  <label for="signupUserName">
+                    <input type="text" name="username" id="signupUserName" value="" placeholder="Type your user name" required>
+                  </label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Enter your email address:</td>
+                <td>
+                  <label for="signupEmail">
+                    <input type="email" name="email" value="" id="signupEmail" placeholder="Type your email" required>
+                  </label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Enter your password:</td>
+                <td>
+                  <label for="signupPassword">
+                    <input type="password" name="password" value="" id="signupPassword" placeholder="Type your password" required>
+                  </label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>&nbsp;</td>
+                <td>
+                  <label for="signupSubmit">
+                    <button type="submit" name="signupButton" id="signupButton">Sign up</button>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+
+      <!-- RANDOM BUTTON -->
+
+    </section>
+
+  </div>
+  <!-- End of div containing login and signup areas -->
+
+
+  <section class="homepageSections">
+    <h3>Just interested in random readings?</h3>
+    <br>
+    <a href="/articles" type="button" name="button">Start reading</a>
+  </section>

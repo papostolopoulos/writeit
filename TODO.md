@@ -74,6 +74,8 @@
   * Created a text area tag for the description. Included in a div tag and with a label, same pattern like before with the appropriate ids and classes.
   * Created a priority dropdown, same pattern
   * Created a button with "type = 'submit'".
+
+
 * [X] Create a record with Post/todo
   * Created a router.post in todo.js for "/"
   * Created function validTodo in order to confirm that some conditions are met in order to accept that the object data is valid
@@ -128,3 +130,17 @@
   * added a button in the form
   * he put both anchor and button in the form because the form is a block level element so it can render properly
 * [X] Redirect on create/update/delete
+
+* [X] Fix the form for logging in (at index.js)
+* [] Encrypt the password information for sign up (at index.js)
+* [] Encrypt the password information for login (at index.js)
+* [] Require the password to have a specific length or set of characters (at index.js)
+* [] Validate sign up info (at index.js see function)
+* [] Fix the height for the login area (at index.js)
+* [] Display main information at header bar (at layout.js)
+* [] Fix the form for submitting a new article
+* [X] Put the login info outside the header
+* [] Replace the icon in the header bar
+* [] Enable cookies
+* [] Enable logouts
+* [] Create filter for viewing user specific postings

@@ -21,15 +21,16 @@ router.get('/new', (req, res, next) => {
 
 
 
+//I NEED TO FIX THAT
 router.post('/', (req, res, next) => {
   console.log(req.body);
+
   if (validEntry(req.body)) {
     let userPosting = {
       title: req.body.title,
       body: req.body.body,
       date: new Date()
     };
-
     knex('articles').insert(userPosting, "id")
     .then(ids => {
       let id = ids[0];
@@ -52,6 +53,8 @@ function validEntry(userEntry) {
   return userEntry.title.trim() !== "" &&
   userEntry.body.trim() !== "";
 }
+
+
 
 module.exports = router;
 

@@ -1,6 +1,6 @@
 /*
   ========================================
-  Main areas
+  General areas
   ========================================
 */
 
@@ -97,24 +97,34 @@ header {
 	/*004-Backgrounds*/
 }
 
+#loginSignupDiv {
+  text-align: center;
+}
 
-#loginArea {
-	/*001-Box Model*/
-	height: inherit;
-	padding: 10px 10px 0 20px;
+#loginSection, #signupSection {
+  /*001-Box Model*/
+  width: 48%;
+  display: inline-block;
+  border: 2px solid rgb(187, 52, 47);
+  margin: 1px;
 	/*002-Positioning*/
-	float: right;
 	/*003-Typography*/
-	text-align: right;
 	/*004-Backgrounds*/
+  background-color: rgba(221, 164, 72, .3);
 }
 
 main {
 	/*001-Box Model*/
-	padding-bottom:100px; /* Height of the footer element */
+	/*padding-bottom:100px; /* Height of the footer element */*/
 	/*002-Positioning*/
 	/*003-Typography*/
 	/*004-Backgrounds*/
+}
+
+#maxWidthMain {
+  /*width: 1000px;*/
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 section {
@@ -135,30 +145,14 @@ section {
 
 .loginPageForms table tr td {
 	/*001-Box Model*/
-	padding: 0 10px;
+  padding: 5px 5px;
 	text-align: right;
 	/*002-Positioning*/
 	/*003-Typography*/
 	/*004-Backgrounds*/
 }
 
-#signupForm table tr td {
-	/*001-Box Model*/
-	padding: 5px 5px;
-	/*002-Positioning*/
-	/*003-Typography*/
-	/*004-Backgrounds*/
-}
-
-#signupArea {
-	/*001-Box Model*/
-	padding: 50px 0;
-	/*002-Positioning*/
-	/*003-Typography*/
-	/*004-Backgrounds*/
-}
-
-#signupArea table{
+#signupAreaDiv table, #loginAreaDiv table {
 	/*001-Box Model*/
 	margin: 0 auto;
 	/*002-Positioning*/
@@ -169,16 +163,12 @@ section {
 #loginForm table {
 	/*001-Box Model*/
 	/*002-Positioning*/
-	float: right;
-	vertical-align: bottom;
 	/*003-Typography*/
 	/*004-Backgrounds*/
-	color: rgb(255, 255, 255);
 }
 
 #loginForm label {
 	/*001-Box Model*/
-	padding-left: 5px;
 	/*002-Positioning*/
 	/*003-Typography*/
 	/*004-Backgrounds*/
@@ -227,9 +217,94 @@ footer a:hover {
 	color: rgb(221, 164, 72);
 }
 
+
+
+.articleArea {
+	/*001-Box Model*/
+	margin-bottom: 10px;
+	padding: 15px;
+	border: solid 2px rgb(187, 52, 47);
+	/*002-Positioning*/
+	/*003-Typography*/
+	text-align: justify;
+	/*004-Backgrounds*/
+	background-color: rgb(255,255,255);
+}
+
+.articleArea h3 {
+	text-align: center;
+	font-size: 150%;
+}
+
+.articleArea h4 {
+	text-align: left;
+	font-weight: 600;
+}
+
+.articleArea h5 {
+	text-align: left;
+	font-size: 80%;
+	font-style: italic;
+	margin-top: 10px;
+}
+
+.articleArea p {
+	font-family: times;
+}
+
+
 /*
   ========================================
-  Inlines
+  003-Typography
+  ========================================
+*/
+
+
+ # {
+	text-align: center;
+}
+
+.homepageSections {
+  text-align: center;
+}
+
+.homepageSections h1 {
+	font-size: 280%;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.homepageSections h2 {
+	font-size: 200%;
+	line-height: 120%;
+	margin: 10px 0;
+}
+
+.homepageSections h3 {
+	font-size: 150%;
+	margin: 10px 0;
+	line-height: 120%;
+}
+
+#signupHeading {
+	text-align: center;
+}
+
+.loginPageForms input{
+	font-size: inherit;
+}
+
+
+
+
+
+
+
+
+
+/*
+  ========================================
+    Buttons
   ========================================
 */
 button {
@@ -276,100 +351,6 @@ a[type="button"]:hover {
 	/*004-Backgrounds*/
 	background-color: rgb(221, 164, 72);
 }
-/*
-  ========================================
-  002-Positioning
-  ========================================
-*/
-
-
-
-/*001-Box Model*/
-/*002-Positioning*/
-/*003-Typography*/
-/*004-Backgrounds*/
-
-
-.articleArea {
-	/*001-Box Model*/
-	margin-bottom: 10px;
-	padding: 15px;
-	border: solid 2px rgb(187, 52, 47);
-	/*002-Positioning*/
-	/*003-Typography*/
-	text-align: justify;
-	/*004-Backgrounds*/
-	background-color: rgb(255,255,255);
-}
-
-.articleArea h3 {
-	text-align: center;
-	font-size: 150%;
-}
-
-.articleArea h4 {
-	text-align: left;
-	font-weight: 600;
-}
-
-.articleArea h5 {
-	text-align: left;
-	font-size: 80%;
-	font-style: italic;
-	margin-top: 10px;
-}
-
-.articleArea p {
-	font-family: times;
-}
-
-
-/*
-  ========================================
-  003-Typography
-  ========================================
-*/
-
-
- #signupPage {
-	text-align: center;
-}
-
-#signupPage h1 {
-	font-size: 280%;
-	font-weight: bold;
-	padding: 10px;
-}
-
-#signupPage h2 {
-	font-size: 200%;
-	line-height: 120%;
-	margin: 10px 0;
-}
-
-#signupPage h3 {
-	font-size: 150%;
-	margin: 10px 0;
-	line-height: 120%;
-}
-
-#signupHeading {
-	text-align: center;
-}
-
-.loginPageForms input{
-	font-size: inherit;
-}
-
-
-
-
-
-
-
-
-
-
 
 
 /*
