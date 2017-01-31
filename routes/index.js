@@ -86,12 +86,13 @@ router.post('/users/:username', (req, res, next) => {
   console.log("These come from the user login form");
   console.log(req.body);
 
-  //See if the account does not exist
   knex('users')
   .select()
   .where({email: req.body.email})
   .returning('email')
   .then((usersEmails) => {
+
+    //See if the account does not exist
     if (usersEmails.length === 0) {
       console.log("account does not exist");
       res.render('accountdoesnotexist',
@@ -103,43 +104,28 @@ router.post('/users/:username', (req, res, next) => {
 
     // Compare passwords
     else {
-
-      var hashedPassword = new Promise((resolve, reject) => {
-          resolve(generatePassword(req.body.password));
-      });
-
-      hashedPassword
-      .then((pwd) => {
-        console.log("This is the pwd:", pwd);
-        let userLogin = {
-          email: req.body.email,
-          password: pwd
+      knex('users') //select table from db
+      .select()
+      .where({email: req.body.email})
+      .returning('*')
+      .then((loginUsers) =>{
+        let loginUser = loginUsers[0];
+        console.log("loginUser (from database): ");
+        console.log(loginUser);
+        console.log(bcrypt.compareSync(req.body.password, loginUser.password));
+        if (bcrypt.compareSync(req.body.password, loginUser.password) === true) {
+          console.log("passwords match");
+          res.redirect(`/users/${loginUser.username}`)
         }
-
-        knex('users') //select table from db
-        .select()
-        .where({email: userLogin.email})
-        .returning('*')
-        .then((loginUsers) =>{
-          let loginUser = loginUsers[0];
-          console.log("loginUser (from database): ");
-          console.log(loginUser);
-          console.log("userLogin (from req.body, hashed pwd): ");
-          console.log(userLogin);
-          if (userLogin.password !== loginUser.password) {
-            res.render('accountdoesnotexist',
-            {
-              email: req.body.email,
-              title: "writeIt"
-            });
-          }
-          else {
-            res.redirect(`/users/${userName}`)
-          }
-        })
+        else {
+          res.render('accountdoesnotexist',
+          {
+            email: req.body.email,
+            title: "writeIt"
+          });
+        }
       })
-
-    } //end of else
+    } //end of TOP else
   });
 
 
