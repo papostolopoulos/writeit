@@ -1,0 +1,18 @@
+
+
+This is the userpostings.hbs page
+
+{{postings.title}}
+{{posts.body}}
+
+{{title}}
+
+
+{{#each postings}}
+<article class="articleArea">
+  <h3>{{title}}</h3>
+  <h4>posted by: {{username}}.</h4>
+  <h5>Date posted: {{date}}</h5>
+  <p>{{body}}</p>
+</article>
+{{/each}}

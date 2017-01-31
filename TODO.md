@@ -132,10 +132,11 @@
 * [X] Redirect on create/update/delete
 
 * [X] Fix the form for logging in (at index.js)
-* [] Encrypt the password information for sign up (at index.js)
+* [X] Redirect to account exists page if the username already exists in the database
+* [X] Encrypt the password information for sign up (at index.js)
 * [] Encrypt the password information for login (at index.js)
 * [] Require the password to have a specific length or set of characters (at index.js)
-* [] Validate sign up info (at index.js see function)
+* [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] Fix the height for the login area (at index.js)
 * [] Display main information at header bar (at layout.js)
 * [] Fix the form for submitting a new article
@@ -144,3 +145,12 @@
 * [] Enable cookies
 * [] Enable logouts
 * [] Create filter for viewing user specific postings
+
+
+
+
+
+
+[] Cannot hash password in a synchronous way
+[X] Cannot render postings in the user's page
+[] Problem with the new posting does not go in database

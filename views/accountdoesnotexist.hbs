@@ -1,0 +1,105 @@
+<section class="homepageSections">
+<h3>Sorry, there is no user registered with the email {{email}} in the database or the password you entered was incorrect.</h3>
+
+<br>
+
+
+<div id="loginSignupDiv">
+
+  <!-- LOG IN SECTION -->
+  <section class="homepageSections" id="loginSection">
+    <div id="loginAreaDiv">
+              <h3 id="signupHeading">Existing user? <br> Come on in!</h3>
+              <form id="loginForm" class="loginPageForms" action="/users/:username" method="post">
+                <table>
+                  <tbody>
+                    <tr class="loginTableHeadings">
+                      <td>Email:</td>
+                      <td>
+                        <label for="loginEmail">
+                          <input type="email" name="email" value="" placeholder="Enter your email" required>
+                        </label>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Password:</td>
+                      <td>
+                        <label for="loginPassword">
+                          <input type="password" name="password" value="" placeholder="Enter your password" required>
+                        </label>
+                      </td>
+                    </tr>
+
+                    <tr class="loginTableHeadings">
+                      <td>&nbsp;</td>
+                      <td>
+                        <label for="loginSubmit">
+                          <button type="submit" name="loginButton" id="loginButton">Login</button>
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+
+
+
+                </table>
+              </form>
+    </div>
+  </section>
+
+
+  <!-- SIGN UP SECTION -->
+  <section class="homepageSections" id="signupSection">
+
+    <!-- SIGN UP AREA -->
+    <div id="signupAreaDiv">
+      <h3 id="signupHeading">New to <span class="fa fa-pencil-square-o" aria-hidden="true">{{title}}</span>? Welcome! <br> Sign up to create a new account.</h3>
+      <form id="signupForm" class="loginPageForms" action="/users" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>New user name:</td>
+              <td>
+                <label for="signupUserName">
+                  <input type="text" name="username" id="signupUserName" value="" placeholder="Type your user name" required>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Email:</td>
+              <td>
+                <label for="signupEmail">
+                  <input type="email" name="email" value="" id="signupEmail" placeholder="Type your email" required>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Password:</td>
+              <td>
+                <label for="signupPassword">
+                  <input type="password" name="password" value="" id="signupPassword" placeholder="Type your password" required>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <label for="signupSubmit">
+                  <button type="submit" name="signupButton" id="signupButton">Sign up</button>
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+
+    <!-- RANDOM BUTTON -->
+
+  </section>
+
+</div>

@@ -24,6 +24,9 @@ router.get('/:username', function(req, res, next) {
     .where({username: username})
     .returning('*')
     .then((users) => {
+      if (users.length === 0) {
+        res.render('userdoesnotexist');
+      }
       let user = users[0];
       console.log(user);
       res.render('useraccount', user);

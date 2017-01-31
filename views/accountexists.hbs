@@ -1,0 +1,46 @@
+
+<section class="homepageSections">
+  <h3>Sorry, the email {{email}} already exists in the writeIt database.</h3>
+  Please go <a href="/">back</a> and sign up with a different email account.
+
+
+
+  <div id="loginAreaDiv">
+            <h3 id="signupHeading">Existing user? <br> Come on in!</h3>
+            <form id="loginForm" class="loginPageForms" action="/users/:username" method="post">
+              <table>
+                <tbody>
+                  <tr class="loginTableHeadings">
+                    <td>Email:</td>
+                    <td>
+                      <label for="loginEmail">
+                        <input type="email" name="email" value="" placeholder="Enter your email" required>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Password:</td>
+                    <td>
+                      <label for="loginPassword">
+                        <input type="password" name="password" value="" placeholder="Enter your password" required>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr class="loginTableHeadings">
+                    <td>&nbsp;</td>
+                    <td>
+                      <label for="loginSubmit">
+                        <button type="submit" name="loginButton" id="loginButton">Login</button>
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+
+
+
+              </table>
+            </form>
+  </div>
+</section>
