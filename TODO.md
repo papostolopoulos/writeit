@@ -134,7 +134,7 @@
 * [X] Fix the form for logging in (at index.js)
 * [X] Redirect to account exists page if the username already exists in the database
 * [X] Encrypt the password information for sign up (at index.js)
-* [] Encrypt the password information for login (at index.js)
+* [X] Encrypt the password information for login (at index.js)
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] Fix the height for the login area (at index.js)
@@ -145,12 +145,15 @@
 * [] Enable cookies
 * [] Enable logouts
 * [] Create filter for viewing user specific postings
+* [] Need to connect the session with the posting coming from the user
+* [] Need to render the page of the user's postings
+* [] Need to not give access to the user for all pages but only his pages
 
 
 
 
 
-
-[] Cannot hash password in a synchronous way
+[X] Cannot hash password in a synchronous way
 [X] Cannot render postings in the user's page
-[] Problem with the new posting does not go in database
+[X] Need to connect the cookie to all the pages the user browses
+[X] Problem with the new posting does not go in database

@@ -14,22 +14,45 @@ router.get('/', function(req, res, next) {
 });
 
 
-// Display one user account
+// DISPLAY ONE USER ACCOUNT
 router.get('/:username', function(req, res, next) {
-  console.log("req.params:",req.params);
-  let username = req.params.username; //get the username from the url
+  console.log("req.params:",req.params); //display what is in the url
 
     knex('users')
     .select()
-    .where({username: username})
+    .where({username: req.params.username})
     .returning('*')
     .then((users) => {
+      //If user does not exist
       if (users.length === 0) {
         res.render('userdoesnotexist');
       }
-      let user = users[0];
-      console.log(user);
-      res.render('useraccount', user);
+      //If someone tries to access a user page without being logged in as the user
+      else if (req.params.username !== req.session.user) {
+        console.log("req.params.username is ", req.params.username, "while req.session.user is", req.session.user, ". No match");
+        res.render('error', {
+          message: "Restricted page",
+          explanation: "Sorry but the page you are trying to access is restricted. You are either logged in as a different user or you are not logged in as this user.",
+          status: 404
+        });
+      }
+      //Access to the user's account when logged in
+      else {
+        console.log(req.session);
+
+        let user = users[0];
+        console.log("users/:username: Logging the user info from the database: ");
+        console.log(user);
+
+        //create if statement where req.params.username has to match with the user
+
+        res.render('useraccount', {
+          username: user.username,
+          user: user.username,
+          email: user.email
+        });
+      }
+
     });
 
 });

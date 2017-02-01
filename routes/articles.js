@@ -7,6 +7,7 @@ var knex = require('../db/knex');
 router.get('/', function(req, res, next) {
   knex('articles') //table name
     .select() //select all
+    .innerJoin('users', 'articles.user_id', 'users.id')
     .then(postings => { //define and give me the content
       res.render('articles', {postings: postings});
       //render(page to render, {property access: array we got from database}
@@ -27,11 +28,11 @@ router.get('/:username', function(req, res, next) {
   .where({username: username})
   .returning('*')
   .then((postings) => {
-    if (postings.length === 0) {
-      res.render('userdoesnotexist');
-    }
+
     console.log(postings);
-    res.render('userpostings', {postings: postings});
+    res.render('userpostings', {
+      postings: postings
+    });
   });
 });
 
@@ -50,7 +51,7 @@ router.post('/', (req, res, next) => {
     knex('articles').insert(userPosting, "id")
     .then(ids => {
       let id = ids[0];
-      res.redirect('/articles/' + id)
+      res.redirect('/articles/' + id);
     });
   }
 

@@ -1,9 +1,10 @@
-var express = require('express');
-var path = require('path');
+var express = require('express'); //Framework for organizing the web application in a MVC architecture on the server size. In this program we use Handlevars for templating
+var path = require('path'); //The path module provides utilities for working with file and directory paths.
 var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var logger = require('morgan'); //logger
+var cookieParser = require('cookie-parser'); //Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+var bodyParser = require('body-parser'); //extracts the body portion of an incomint request stream and exposes it on req.body (easier to read and interface with)
+var expressSession = require('express-session'); //This module helps us create a work session for the user
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -21,10 +22,15 @@ app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('dev')); //logger
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser()); //sets the request cookies variable
+app.use(expressSession({
+  secret: 'there can be only one',
+  saveUninitialized: true, //Saving the session to a permanent storage like a database. That allows persistent login even when the server goes down. Sp when the server comes back up, the users are still logged in.
+  resave: true//Even if nothing changed, go ahead and save it again (when true)
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);

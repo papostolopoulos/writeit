@@ -97,6 +97,22 @@ header {
 	/*004-Backgrounds*/
 }
 
+#headerUserAreaDiv{
+  /*001-Box Model*/
+  height: inherit;
+  /*padding: 5px;*/
+  width:auto;
+  /*002-Positioning*/
+  float: right;
+  /*003-Typography*/
+  line-height: 30px; /*extra alignment is happening from the padding done to the tds of the table*/
+  /*004-Backgrounds*/
+}
+
+#headerUserAreaDiv table tbody tr td{
+  padding: 5px;
+}
+
 #loginSignupDiv {
   text-align: center;
 }

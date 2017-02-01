@@ -20,7 +20,6 @@
     <header>
       <!-- LOGO -->
       <div id="logoDiv">
-        <img src="" alt="">
         <a href="/">
           <span class="fa fa-pencil-square-o" aria-hidden="true">writeIt</span>
 
@@ -28,13 +27,41 @@
       </div>
 
       <!-- USER INFO AREA -->
-      <div id="loginArea">
-        <a href="/newarticle" type="button" name="button" class="newArticleButton">
-          New posting
-        </a>
-        User OR Visitor
-        Account settings
-        Logout
+      <div id="headerUserAreaDiv">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                User: {{user}}
+              </td>
+              <td>
+                My posts
+              </td>
+              <td>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td>Settings</td>
+              <td>
+                <a href="/newarticle" type="button" name="newArticleButton" class="newArticleButton">
+                  New post
+                </a>
+              </td>
+              <td>
+                <form id="logoutForm" class="" action="/logout" method="get">
+
+                  <label for="logoutSubmit">
+                    <button type="submit" name="logoutButton" id="logoutButton">Logout</button>
+                  </label>
+                </form>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
       </div>
     </header>
 

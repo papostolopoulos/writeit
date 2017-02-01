@@ -5,21 +5,6 @@ const saltRounds = 12;
 const knex = require('../db/knex');
 
 
-
-
-//HOMEPAGE DISPLAY
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'writeIt' });
-});
-
-
-// REDIRECT TO NEW POSTING PAGE
-router.get('/newarticle', (req, res, next) => {
-  res.render('newarticle');
-});
-
-
-
 // USER SIGN UP
 router.post('/users', (req, res, next) => {
   console.log("These come from the user signup form:");
@@ -41,11 +26,11 @@ router.post('/users', (req, res, next) => {
 
     // check in validation of user's entries
     else {
-
+      //need to create a function for this. See bottom of page in functions section
     }
   });
 
-  var hashedPassword = new Promise((resolve, reject) => {
+  var hashedPassword = new Promise((resolve, rejesssct) => {
       resolve(generatePassword(req.body.password));
   });
 
@@ -79,8 +64,6 @@ router.post('/users', (req, res, next) => {
 
 
 
-
-
 // USER LOGIN
 router.post('/users/:username', (req, res, next) => {
   console.log("These come from the user login form");
@@ -98,11 +81,11 @@ router.post('/users/:username', (req, res, next) => {
       res.render('accountdoesnotexist',
       {
         email: req.body.email,
-        title: "writeIt"
+        title: "writeIt",
+        user: "visitor"
       });
     }
 
-    // Compare passwords
     else {
       knex('users') //select table from db
       .select()
@@ -113,23 +96,81 @@ router.post('/users/:username', (req, res, next) => {
         console.log("loginUser (from database): ");
         console.log(loginUser);
         console.log(bcrypt.compareSync(req.body.password, loginUser.password));
+        // Compare passwords
         if (bcrypt.compareSync(req.body.password, loginUser.password) === true) {
           console.log("passwords match");
-          res.redirect(`/users/${loginUser.username}`)
+          req.session.user = loginUser.username;
+          req.session.cookie.maxAge = 10 * 24 * 60 *60
+          // req.session.cookie.httpOnly = true;
+          console.log("req.session.user: ");
+          console.log(req.session.user);
+          console.log(req.session);
+          // let user = req.session.user;
+          //req.cookies
+          // res.cookie('cookie', 'monster', {
+          //   domain: '/', //Domain name for cookie
+          //   path: '/', //Path for cookie
+          //   maxAge: 10 * 24 * 60 *60, //Days, hours, minutes, seconds Another example: new Date(Date.now() + 900000
+          //   httpOnly: true //flags if the cookie should only be accessed from the server
+          // }
+          // ); //{ maxAge: 604800, httpOnly: true }
+          res.redirect(`/articles/${loginUser.username}`)
         }
         else {
           res.render('accountdoesnotexist',
           {
             email: req.body.email,
-            title: "writeIt"
+            title: "writeIt",
+            user: 'visitor'
           });
         }
       })
     } //end of TOP else
   });
-
-
 });
+
+
+//HOMEPAGE DISPLAY
+router.get('/', function(req, res, next) {
+  // console.log("req.cookies: ");
+  // console.log(req.cookies); //first part of the cookie is the session id. Second part is the signature that signs the authentication to the server
+  console.log('--------------');
+  console.log('--------------');
+  console.log('--------------');
+  console.log("req.session: ");
+  console.log(req.session);
+  console.log("req.session.user: ");
+  console.log(req.session.user);
+  if (!req.session.user) {
+    res.render('index',
+    {
+      title: 'writeIt',
+      user: "visitor"
+    });
+  }
+  else {
+    res.render('index',
+    {
+      title: 'writeIt',
+      user: req.session.user
+    });
+  }
+});
+
+
+//LOGOUT BUTTON
+router.get('/logout', (req, res, next) => {
+
+  res.render('index');
+})
+
+
+// REDIRECT TO NEW POSTING PAGE
+router.get('/newarticle', (req, res, next) => {
+  res.render('newarticle');
+});
+
+
 
 
 //FUNCTIONS
