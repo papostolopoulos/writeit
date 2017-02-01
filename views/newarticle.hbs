@@ -31,10 +31,12 @@
           <tr>
             <td>
               <label for="newArticleSubmit">
-                  <button type="submit" name="button" id="newArticleSubmit">writeIt</button>
+                  <button type="submit" name="button" id="newArticleSubmit" title="Save your post">writeIt</button>
               </label>
             </td>
-            <td>&nbsp;</td>
+            <td>
+              <button type="button" name="button" onClick="history.go(-1);return true;" title="Cancel this post">forgetIt</button>
+            </td>
           </tr>
         </table>
       </form>

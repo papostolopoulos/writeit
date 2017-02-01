@@ -8,8 +8,12 @@ router.get('/', function(req, res, next) {
   knex('articles') //table name
     .select() //select all
     .innerJoin('users', 'articles.user_id', 'users.id')
+    .orderBy('date', 'desc')
     .then(postings => { //define and give me the content
-      res.render('articles', {postings: postings});
+      res.render('articles', {
+        postings: postings,
+        user: req.session.user || 'visitor'
+      });
       //render(page to render, {property access: array we got from database}
     })
 });
@@ -20,47 +24,77 @@ router.get('/:username', function(req, res, next) {
   console.log("req.params:",req.params);
   let username = req.params.username; //get the username from the url
 
-  // SELECT * FROM users INNER JOIN articles ON users.id = articles.user_id WHERE username='zoo';
-  knex
-  .select()
-  .table('articles')
-  .innerJoin('users', 'articles.user_id', 'users.id')
-  .where({username: username})
-  .returning('*')
-  .then((postings) => {
+  //See if the user is signed in
+  if (req.session.user === undefined) {
+    res.render('error', {
+      user: "visitor",
+      message: "404 - Restricted page",
+    explanation: "Sorry but the page you are trying to access is restricted. You are either logged in as a different user or you are not logged in at all.",
+    status: 404
+    })
+  }
+  else { //Get the
+    // SELECT * FROM users INNER JOIN articles ON users.id = articles.user_id WHERE username='zoo' ORDER BY date DESC;
+    knex
+    .select()
+    .table('articles')
+    .innerJoin('users', 'articles.user_id', 'users.id')
+    .where({username: username})
+    .orderBy('date', 'desc')
+    .returning('*')
+    .then((postings) => {
 
-    console.log(postings);
-    res.render('userpostings', {
-      postings: postings
+      console.log(postings);
+      console.log(req.session.user);
+      res.render('userpostings', {
+        postings: postings,
+        user: req.session.user || "visitor"
+      });
     });
-  });
+  }
+
 });
 
 
 
-//I NEED TO FIX THAT
+//POST ARTICLES AFTER THEY COME FROM THE NEW ARTICLE FORM - I NEED TO FIX THAT
 router.post('/', (req, res, next) => {
+  console.log("req.body coming from the post of new article");
   console.log(req.body);
+  console.log("req.session.user coming from the post page");
+  console.log(req.session.user);
 
-  if (validEntry(req.body)) {
-    let userPosting = {
-      title: req.body.title,
-      body: req.body.body,
-      date: new Date()
-    };
-    knex('articles').insert(userPosting, "id")
-    .then(ids => {
-      let id = ids[0];
-      res.redirect('/articles/' + id);
-    });
-  }
+  knex('users')
+  .select()
+  .where({username: req.session.user})
+  .then((users) =>{
+    let user = users[0];
+    console.log(user.id);
 
-  else {
-    res.status(500);
-    res.render('error', {
-      message: "Invalid entry (coming from articles.js)"
-    })
-  }
+    if (validEntry(req.body)) {
+      let userPosting = {
+        title: req.body.title,
+        body: req.body.body,
+        date: new Date(),
+        user_id: user.id
+      };
+      knex('articles')
+      .insert(userPosting, "id")
+      .then(ids => {
+        let id = ids[0];
+        res.redirect('/articles/' + req.session.user);
+      });
+    }
+
+    else {
+      res.status(500);
+      res.render('error', {
+        message: "Invalid entry (coming from articles.js)"
+      })
+    }
+  });
+
+
 });
 
 

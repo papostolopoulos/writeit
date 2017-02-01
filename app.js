@@ -9,7 +9,7 @@ var expressSession = require('express-session'); //This module helps us create a
 var index = require('./routes/index');
 var users = require('./routes/users');
 var articles = require('./routes/articles');
-// var newarticle = require('./routes.newarticle')
+var newarticle = require('./routes/newarticle')
 var useraccount = require('./routes/useraccount');
 var accountexists = require('./routes/accountexists');
 var userpostings = require('./routes/userpostings');
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/articles', articles);
-// app.use('/newarticle', newarticle);
+app.use('/newarticle', newarticle);
 app.use('/useraccount', useraccount);
 app.use('/accountexists', accountexists);
 app.use('/userpostings', userpostings);

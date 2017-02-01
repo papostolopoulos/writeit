@@ -35,25 +35,29 @@
                 User: {{user}}
               </td>
               <td>
-                My posts
+                <a href="/articles/{{user}}"><button type="button" name="button">My posts</button></a>
               </td>
               <td>
-
+                <a href="/users/{{user}}"><button type="button" name="button">Settings</button></a>
               </td>
             </tr>
 
             <tr>
-              <td>Settings</td>
               <td>
-                <a href="/newarticle" type="button" name="newArticleButton" class="newArticleButton">
+                &nbsp;
+              </td>
+              <td>
+                <a href="/newarticle" type="button" name="newArticleButton" id="newArticleButton">
+                  <button type="button" name="button">
                   New post
+                  </button>
                 </a>
               </td>
               <td>
                 <form id="logoutForm" class="" action="/logout" method="get">
 
                   <label for="logoutSubmit">
-                    <button type="submit" name="logoutButton" id="logoutButton">Logout</button>
+                    <button type="submit" name="logoutButton" id="logoutSubmit">Logout</button>
                   </label>
                 </form>
               </td>
@@ -88,5 +92,10 @@
     </footer>
 
   </div>
+
+  <!-- JAVASCRIPT DOCUMENT LINK -->
+  <script type="text/javascript" src="/javascripts/scripts.js">
+
+  </script>
 </body>
 </html>

@@ -1,18 +1,16 @@
+<section class="homepageSections">
+  <h1>My Posts</h1>
 
-
-This is the userpostings.hbs page
-
-{{postings.title}}
-{{posts.body}}
-
-{{title}}
-
-
-{{#each postings}}
-<article class="articleArea">
-  <h3>{{title}}</h3>
-  <h4>posted by: {{username}}.</h4>
-  <h5>Date posted: {{date}}</h5>
-  <p>{{body}}</p>
-</article>
-{{/each}}
+  {{#each postings}}
+  <article class="articleArea">
+    <h3>{{title}}</h3>
+    <h4>posted by: {{username}}.</h4>
+    <h5>Date posted: {{date}}</h5>
+    <p>{{body}}</p>
+    <div class="editButtons">
+      <button type="button" name="button">changeIt</button>
+      <button type="button" name="button">scrapIt</button>
+    </div>
+  </article>
+  {{/each}}
+</section>

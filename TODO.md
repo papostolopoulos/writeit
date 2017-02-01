@@ -137,17 +137,21 @@
 * [X] Encrypt the password information for login (at index.js)
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
-* [] Fix the height for the login area (at index.js)
-* [] Display main information at header bar (at layout.js)
+* [X] Fix the height for the login area (at index.js)
+* [X] Display main information at header bar (at layout.js)
 * [] Fix the form for submitting a new article
 * [X] Put the login info outside the header
-* [] Replace the icon in the header bar
-* [] Enable cookies
-* [] Enable logouts
-* [] Create filter for viewing user specific postings
-* [] Need to connect the session with the posting coming from the user
-* [] Need to render the page of the user's postings
-* [] Need to not give access to the user for all pages but only his pages
+* [X] Replace the icon in the header bar
+* [X] Enable cookies
+* [X] Enable logouts
+* [X] Create filter for viewing user specific postings
+* [X] Need to connect the session with the posting coming from the user
+* [X] Need to render the page of the user's postings
+* [X] Need to not give access to the user for all pages but only his pages
+* [] Need to display articles in reverse order of them being posted
+* [X] Set up cookies for new user sign up
+* [] Give the option to the user to delete
+* [] Give the option to the user to edit posts
 
 
 
@@ -157,3 +161,5 @@
 [X] Cannot render postings in the user's page
 [X] Need to connect the cookie to all the pages the user browses
 [X] Problem with the new posting does not go in database
+[] cannot redirect to the unique user or unique articles page of the user from the nav bar
+[] posting not saved in database even though it renders in front page

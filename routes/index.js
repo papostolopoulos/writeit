@@ -9,7 +9,6 @@ const knex = require('../db/knex');
 router.post('/users', (req, res, next) => {
   console.log("These come from the user signup form:");
   console.log(req.body);
-  console.log(req.body.password);
 
   generatePassword(req.body.password);
 
@@ -54,7 +53,13 @@ router.post('/users', (req, res, next) => {
       .returning('username')
       .then((userNames) => {
         let userName = userNames[0];
+        console.log("Username from the sign up process: ");
         console.log(userName);
+        console.log("---------");
+        req.session.user = userName;
+        req.session.cookie.maxAge = 10 * 24 * 60 * 60 //10 days long
+        console.log("req.session.cookie from the signup: ");
+        console.log(req.session.cookie);
         res.redirect(`/users/${userName}`)
       });
     })
@@ -66,7 +71,7 @@ router.post('/users', (req, res, next) => {
 
 // USER LOGIN
 router.post('/users/:username', (req, res, next) => {
-  console.log("These come from the user login form");
+  console.log("These come from the user login form. req.body:");
   console.log(req.body);
 
   knex('users')
@@ -100,7 +105,7 @@ router.post('/users/:username', (req, res, next) => {
         if (bcrypt.compareSync(req.body.password, loginUser.password) === true) {
           console.log("passwords match");
           req.session.user = loginUser.username;
-          req.session.cookie.maxAge = 10 * 24 * 60 *60
+          req.session.cookie.maxAge = 10 * 24 * 60 * 60 //10 days long
           // req.session.cookie.httpOnly = true;
           console.log("req.session.user: ");
           console.log(req.session.user);
@@ -126,6 +131,25 @@ router.post('/users/:username', (req, res, next) => {
         }
       })
     } //end of TOP else
+  });
+});
+
+
+// REDIRECT TO NEW POSTING PAGE
+router.get('/newarticle', (req, res, next) => {
+  console.log("req.session.user from the new posting redirect");
+  console.log(req.session.user);
+  if (req.session.user === undefined) {
+    res.render('error', {
+      user: "visitor",
+      message: "404 - Restricted page",
+    explanation: "Sorry but the page you are trying to access is restricted. You are either logged in as a different user or you are not logged in at all.",
+    status: 404
+    })
+    console.log('something is wrong');
+  }
+  res.render('newarticle', {
+    user: req.session.user
   });
 });
 
@@ -160,14 +184,16 @@ router.get('/', function(req, res, next) {
 
 //LOGOUT BUTTON
 router.get('/logout', (req, res, next) => {
-
-  res.render('index');
-})
-
-
-// REDIRECT TO NEW POSTING PAGE
-router.get('/newarticle', (req, res, next) => {
-  res.render('newarticle');
+  console.log("LOGOUT: req session before");
+  console.log(req.session);
+  req.session.destroy(function (err) {
+      res.render('index', {
+        title: 'writeIt',
+        user: "visitor"
+      });
+  });
+  console.log("LOGOUT: req session after");
+  console.log(req.session);
 });
 
 
