@@ -35,10 +35,10 @@
                 User: {{user}}
               </td>
               <td>
-                <a href="/articles/{{user}}"><button type="button" name="button">My posts</button></a>
+                <a href="/articles/{{user}}"><button type="button" name="button" title="View a page with my posts only">My posts</button></a>
               </td>
               <td>
-                <a href="/users/{{user}}"><button type="button" name="button">Settings</button></a>
+                <a href="/users/{{user}}"><button type="button" name="button" title="User settings">Settings</button></a>
               </td>
             </tr>
 
@@ -47,7 +47,7 @@
                 &nbsp;
               </td>
               <td>
-                <a href="/newarticle" type="button" name="newArticleButton" id="newArticleButton">
+                <a href="/newarticle" type="button" name="newArticleButton" id="newArticleButton" title="Post a new article">
                   <button type="button" name="button">
                   New post
                   </button>
@@ -57,7 +57,7 @@
                 <form id="logoutForm" class="" action="/logout" method="get">
 
                   <label for="logoutSubmit">
-                    <button type="submit" name="logoutButton" id="logoutSubmit">Logout</button>
+                    <button type="submit" name="logoutButton" id="logoutSubmit" title="Logout">Logout</button>
                   </label>
                 </form>
               </td>

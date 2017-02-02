@@ -85,6 +85,7 @@
   * we needed to update the forms. All inputs should have a name. Also the priority field returns as a string but it should be a number.
   * we needed to update the todo variable in order to have a date entry
   * we needed to update the confirmation function in order to confirm that the priority is a number
+
 * [X] Show one record with GET/todo/:id
   * created a router.get in todo.js for "/todo/:id"
   * added "where" and "first" in the knex command (first is for LIMIT 1)
@@ -99,6 +100,7 @@
   * initially it was not rendering in the page. It was set like an object with a property todo and a value todo.
   * what I did is set key - value pairs in the todo.js file like {description: todo.description}.
   What he did is res.render("single", todo) because the object "todo" already has these properties. So when the view in the .hbs file renders, it has access to these properties.
+
 * [X] Show an edit form with GET /todo/:id/edit
   * Created a router.get("/:id/edit" for the edit view
   * went to single.hbs and created an edit button. Changed to an anchor tag and used the default and added class "btn-warning"
@@ -112,6 +114,7 @@
   * Moved the "/new" on top of the other router.get options because I was getting an error.
   * looked up how he can add a handlebars helper in order for the entries to be pre-populated in the "edit" form
   * for me it worked on the priority option dropdown, but did not work in the description text area. He did not modify the text area at all. There was a mention how this could be manipulated by building javascript but this is not what we want for this project.
+
 * [X] Update a record with PUT/todo/:id
   * He took all the information from "post" to create a new function that can be used for both post and put. Function name is validateTodoInsertUpdateRedirect
   * for this function he added a callback where he does the knex manipulation.
@@ -139,7 +142,7 @@
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [X] Fix the height for the login area (at index.js)
 * [X] Display main information at header bar (at layout.js)
-* [] Fix the form for submitting a new article
+* [X] Fix the form for submitting a new article
 * [X] Put the login info outside the header
 * [X] Replace the icon in the header bar
 * [X] Enable cookies
@@ -148,10 +151,16 @@
 * [X] Need to connect the session with the posting coming from the user
 * [X] Need to render the page of the user's postings
 * [X] Need to not give access to the user for all pages but only his pages
-* [] Need to display articles in reverse order of them being posted
+* [X] Need to display articles in reverse order of them being posted
 * [X] Set up cookies for new user sign up
-* [] Give the option to the user to delete
-* [] Give the option to the user to edit posts
+* [X] Give the option to the user to delete
+* [X] Give the option to the user to edit posts
+* [X] Change the settings link so that it can give a 404 when the visitor tries to access it
+* [] put title attributes inside the header links
+* [] set up the link for the viewIt button
+* [] In the articles.js file update the router.get('/username/id') to redirect to an individual article page (need to create that)
+
+* [] Look for a library that can help me use an html editor
 
 
 
@@ -161,5 +170,6 @@
 [X] Cannot render postings in the user's page
 [X] Need to connect the cookie to all the pages the user browses
 [X] Problem with the new posting does not go in database
-[] cannot redirect to the unique user or unique articles page of the user from the nav bar
-[] posting not saved in database even though it renders in front page
+[X] cannot redirect to the unique user or unique articles page of the user from the nav bar
+[X] posting not saved in database even though it renders in front page
+[] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set
