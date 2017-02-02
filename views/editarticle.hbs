@@ -1,0 +1,65 @@
+
+<!-- MAIN SECTION -->
+<main>
+  <section>
+    <h1>Edit post {{user}}</h1>
+    <article class="" id="editArticleArea">
+      <form class="" id="editArticle" action="/articles/{{user}}/{{id}}?_method=PUT" method="post">
+        <input type="hidden" name="article_id" value="{{id}}">
+        <input type="hidden" name="username" value="{{user}}">
+        <input type="hidden" name="user_id" value="{{user_id}}">
+        <input type="hidden" name="date" value="{{date}}">
+        <table>
+          <tr>
+            <td>
+              <h1>Edit Title:</h1>
+            </td>
+            <td>
+              <label for="newArticleTitle">
+                <input type="text" name="title" id="newArticleTitle"  placeholder="{{title}}" value="{{title}}" required>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Body:
+            </td>
+            <td>
+              <label for="newArticleBody">
+                <textarea name="body" rows="15" cols="100" id="newArticleBody" placeholder="{{body}}" value="{{body}}" required>{{body}}</textarea>
+              </label>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="newArticleSubmit">
+                  <button type="submit" name="button" id="newArticleSubmit" title="Update your post">editIt</button>
+              </label>
+            </td>
+            <td>
+              <button type="button" name="button" onClick="history.go(-1);return true;" title="Cancel editing this post">forgetIt</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+
+    </article>
+
+
+  </section>
+</main>
+
+
+
+
+<!-- // #### articles
+// | field    | datatype         |
+// | :        | :                |
+// | id       | int              |
+// | user_id  | int (fk) - users |
+// | title    | string           |
+// | body     | string           |
+// | date     | datetime         | -->

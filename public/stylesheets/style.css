@@ -270,20 +270,18 @@ footer a:hover {
   /*001-Box Model*/
   /*002-Positioning*/
   /*003-Typography*/
+  text-align: center;
+  font-size: 150%;
   /*004-Backgrounds*/
-
-	text-align: center;
-	font-size: 150%;
 }
 
 .articleArea h4 {
   /*001-Box Model*/
   /*002-Positioning*/
   /*003-Typography*/
+  text-align: left;
+  font-weight: 600;
   /*004-Backgrounds*/
-
-	text-align: left;
-	font-weight: 600;
 }
 
 .articleArea h5 {
@@ -311,7 +309,14 @@ footer a:hover {
   /*003-Typography*/
   text-align: right;
   /*004-Backgrounds*/
+}
 
+.singleSubmitButtonForm {
+  /*001-Box Model*/
+  /*002-Positioning*/
+  display: inline;
+  /*003-Typography*/
+  /*004-Backgrounds*/
 }
 
 
@@ -351,6 +356,15 @@ footer a:hover {
 
 .homepageSections p {
   /*margin-top: 20px;*/
+}
+
+.homepageSections a {
+  color: rgb(221, 164, 72);
+  text-decoration: none;
+}
+
+.homepageSections a:hover {
+  color: rgb(82, 24, 20);
 }
 
 #signupHeading {

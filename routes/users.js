@@ -16,7 +16,8 @@ router.get('/', function(req, res, next) {
 
 // DISPLAY ONE USER ACCOUNT
 router.get('/:username', function(req, res, next) {
-  console.log("req.params:",req.params); //display what is in the url
+  console.log("req.params from users/username");
+  console.log(req.params); //display what is in the url
 
     knex('users')
     .select()
@@ -25,9 +26,14 @@ router.get('/:username', function(req, res, next) {
     .then((users) => {
       //If user does not exist
       if (users.length === 0) {
-        res.render('userdoesnotexist', {
-          user: req.params.username
-        });
+        res.render ('error', {
+          message: "403 - Forbidden",
+          explanation: "Sorry, you are trying to access a user settings page while you are not logged in as that user",
+          status: 403
+        })
+        // res.render('userdoesnotexist', {
+        //   user: req.params.username
+        // });
       }
       //If someone tries to access a user page without being logged in as the user
       else if (req.params.username !== req.session.user) {

@@ -5,6 +5,7 @@ var logger = require('morgan'); //logger
 var cookieParser = require('cookie-parser'); //Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 var bodyParser = require('body-parser'); //extracts the body portion of an incomint request stream and exposes it on req.body (easier to read and interface with)
 var expressSession = require('express-session'); //This module helps us create a work session for the user
+var methodOverride = require('method-override'); //This module allows us to override the form methods from GET to PUT and DELETE
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -20,6 +21,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+var hbs = require("hbs");
+hbs.registerHelper("select", function(selected, options) {
+  return options.fn(this).replace(new RegExp('value=\"' + selected + '\"'), '$& selected = "selected"');
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev')); //logger
@@ -32,6 +38,7 @@ app.use(expressSession({
   resave: true//Even if nothing changed, go ahead and save it again (when true)
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', index);
 app.use('/users', users);

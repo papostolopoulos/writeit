@@ -85,6 +85,7 @@
   * we needed to update the forms. All inputs should have a name. Also the priority field returns as a string but it should be a number.
   * we needed to update the todo variable in order to have a date entry
   * we needed to update the confirmation function in order to confirm that the priority is a number
+
 * [X] Show one record with GET/todo/:id
   * created a router.get in todo.js for "/todo/:id"
   * added "where" and "first" in the knex command (first is for LIMIT 1)
@@ -139,7 +140,7 @@
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [X] Fix the height for the login area (at index.js)
 * [X] Display main information at header bar (at layout.js)
-* [] Fix the form for submitting a new article
+* [X] Fix the form for submitting a new article
 * [X] Put the login info outside the header
 * [X] Replace the icon in the header bar
 * [X] Enable cookies
@@ -148,10 +149,16 @@
 * [X] Need to connect the session with the posting coming from the user
 * [X] Need to render the page of the user's postings
 * [X] Need to not give access to the user for all pages but only his pages
-* [] Need to display articles in reverse order of them being posted
+* [X] Need to display articles in reverse order of them being posted
 * [X] Set up cookies for new user sign up
 * [] Give the option to the user to delete
 * [] Give the option to the user to edit posts
+* [] Change the settings link so that it can give a 404 when the visitor tries to access it
+* [] put title attributes inside the header links
+* [] set up the link for the viewIt button
+* [] In the articles.js file update the router.get('/username/id') to redirect to an individual article page (need to create that)
+
+* [] Look for a library that can help me use an html editor
 
 
 
@@ -161,5 +168,6 @@
 [X] Cannot render postings in the user's page
 [X] Need to connect the cookie to all the pages the user browses
 [X] Problem with the new posting does not go in database
-[] cannot redirect to the unique user or unique articles page of the user from the nav bar
-[] posting not saved in database even though it renders in front page
+[X] cannot redirect to the unique user or unique articles page of the user from the nav bar
+[X] posting not saved in database even though it renders in front page
+[] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set

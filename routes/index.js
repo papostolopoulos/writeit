@@ -16,11 +16,14 @@ router.post('/users', (req, res, next) => {
   knex('users')
   .select()
   .where({email: req.body.email})
-  .returning('email')
-  .then((usersEmails) => {
-    if (usersEmails.length > 0) {
-      var userEmail = usersEmails[0];
-      res.render('accountexists', userEmail);
+  .orWhere({username: req.body.username})
+  .returning('*')
+  .then((existingUsers) => {
+    console.log("logs from the existingUsers");
+    console.log(existingUsers);
+    if (existingUsers.length > 0) {
+      var existingUser = existingUsers[0];
+      res.render('accountexists', existingUser);
     }
 
     // check in validation of user's entries

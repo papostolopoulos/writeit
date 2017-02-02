@@ -1,5 +1,5 @@
 <section class="homepageSections">
-  <h1>My Posts</h1>
+  <h1>My post</h1>
 
   {{#each postings}}
   <article class="articleArea">
@@ -7,10 +7,8 @@
     <h4>posted by: {{username}}.</h4>
     <h5>Date posted: {{date}}</h5>
     <p>{{body}}</p>
-    id: {{id}}
     <div class="editButtons">
-      <a href="{{username}}/{{id}}"><button type="button" name="button" title="View this post on its own page">viewIt</button></a>
-      <a href="{{username}}/{{id}}/edit"><button type="button" name="button" title="Edit this post">changeIt</button></a>
+      <a href="/articles/{{username}}/{{id}}/edit"><button type="button" name="button" title="Edit this post">changeIt</button></a>
       <form class="singleSubmitButtonForm" action="/articles/{{username}}/{{id}}?_method=DELETE" method="post">
         <button type="submit" name="button" title="Delete this post">scrapIt</button>
       </form>
