@@ -177,6 +177,7 @@ section {
 	border: 2px solid rgb(221, 164, 72);
 	/*002-Positioning*/
 	/*003-Typography*/
+  font-size: inherit;
 	/*004-Backgrounds*/
 }
 
@@ -319,17 +320,157 @@ footer a:hover {
   /*004-Backgrounds*/
 }
 
-
 /*
   ========================================
-  003-Typography
+  New Post Area
   ========================================
 */
 
-
- # {
-	text-align: center;
+#articleNewArticleArea {
+  /*001-Box Model*/
+  padding: 4px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+  background-color: rgb(197, 203, 211);
 }
+
+#divNewArticleTitle {
+  /*001-Box Model*/
+  padding: 2px 0 0 8px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+}
+
+#divNewArticleTitle h1 {
+  /*001-Box Model*/
+  width: auto;
+  /*002-Positioning*/
+  display: inline-block;
+  /*003-Typography*/
+  font-size: 150%;
+  /*004-Backgrounds*/
+}
+
+#labelNewArticleTitle {
+  /*001-Box Model*/
+  /*002-Positioning*/
+  display: inline-block;
+  /*003-Typography*/
+  /*004-Backgrounds*/
+}
+
+#inputNewArticleTitle {
+  /*001-Box Model*/
+  border: 2px solid rgb(221, 164, 72);
+  /*002-Positioning*/
+  /*003-Typography*/
+  font-size: 120%;
+  /*004-Backgrounds*/
+}
+
+#divNewPostIcons {
+  /*001-Box Model*/
+  padding: 4px 4px 2px 4px;
+  width: 100%;
+  /*002-Positioning*/
+  margin: 0 auto;
+  /*003-Typography*/
+  /*004-Backgrounds*/
+  background-color: rgb(197, 203, 211);
+}
+
+#divNewPostIcons button {
+  /*001-Box Model*/
+  padding: 2px 4px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+}
+
+#divNewPostIcons button i {
+  /*001-Box Model*/
+  margin: 0 auto;
+  min-width: 19px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+}
+
+#textAreaNewArticle {
+  /*001-Box Model*/
+  /*002-Positioning*/
+  display: none;
+  /*003-Typography*/
+  /*004-Backgrounds*/
+}
+
+#richTextField {
+  /*001-Box Model*/
+  width: 100%;
+  margin: 0 auto;
+  min-height: 800px;
+  border: 2px solid rgb(221, 164, 72);
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+  background-color: rgb(255,255,255);
+}
+
+input[type="color"] {
+  /*001-Box Model*/
+  border-radius: 5px;
+  border: 2px solid rgb(221, 164, 72);
+  min-height: 19px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+  background-color: rgb(142, 40, 37);
+}
+
+input[type="color"]:hover {
+  background-color: rgb(221, 164, 72);
+}
+
+#inputInsertImage {
+  /*display: none;*/
+}
+
+select {
+  /*001-Box Model*/
+  border: 2px solid rgb(221, 164, 72);
+  /*002-Positioning*/
+  /*003-Typography*/
+  font-size: 100%;
+  /*004-Backgrounds*/
+}
+
+.divButtonSeparator {
+  /*001-Box Model*/
+  padding: 2px 8px 2px 2px;
+  margin-bottom: 4px;
+  border-right: 2px solid rgb(221, 164, 72);
+  height: 35px;
+  /*002-Positioning*/
+  display: inline-block;
+  /*003-Typography*/
+  text-align: center;
+  line-height: 31px;
+  /*004-Backgrounds*/
+}
+
+#divNewArticleSubmitButtons {
+  text-align: right;
+}
+
+
+/*
+  ========================================
+  Fonts Typography
+  ========================================
+*/
+
 
 .homepageSections {
   text-align: center;
@@ -371,9 +512,7 @@ footer a:hover {
 	text-align: center;
 }
 
-.loginPageForms input{
-	font-size: inherit;
-}
+
 
 
 

@@ -159,6 +159,11 @@
 * [X] put title attributes inside the header links
 * [X] set up the link for the viewIt button
 * [X] In the articles.js file update the router.get('/username/id') to redirect to an individual article page (need to create that)
+* [] The user's individual page should be viewable to the users. Create router option so that the random user can filter the option of viewing the posts of only one user
+Perhaps as articles/pages/:username through form links
+* [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
+* [] Create the option to the random user to view information of the other user that is interested about
+
 
 * [] Look for a library that can help me use an html editor
 
@@ -172,4 +177,4 @@
 [X] Problem with the new posting does not go in database
 [X] cannot redirect to the unique user or unique articles page of the user from the nav bar
 [X] posting not saved in database even though it renders in front page
-[] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set
+[X] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set

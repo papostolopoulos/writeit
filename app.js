@@ -14,7 +14,6 @@ var newarticle = require('./routes/newarticle')
 var useraccount = require('./routes/useraccount');
 var accountexists = require('./routes/accountexists');
 var userpostings = require('./routes/userpostings');
-
 var app = express();
 
 // view engine setup
