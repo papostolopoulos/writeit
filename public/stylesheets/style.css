@@ -320,6 +320,16 @@ footer a:hover {
   /*004-Backgrounds*/
 }
 
+.iframeArticles {
+  /*001-Box Model*/
+  width: 1000px;
+  height: 400px;
+  /*002-Positioning*/
+  /*003-Typography*/
+  /*004-Backgrounds*/
+  background-color: yellow;
+}
+
 /*
   ========================================
   New Post Area

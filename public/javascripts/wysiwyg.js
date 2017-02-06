@@ -41,6 +41,9 @@ let buttonInsertImage = document.getElementById("buttonInsertImage");
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
 let buttonSelectAll = document.getElementById("buttonSelectAll");
 
+let formNewArticle = document.getElementById("formNewArticle");
+let buttonSubmitNewArticle = document.getElementById("buttonSubmitNewArticle");
+
 
 
 
@@ -69,9 +72,9 @@ buttonInsertOrderedList.addEventListener("click", ()=>{execCmd('insertOrderedLis
 buttonInsertParagraph.addEventListener("click", ()=>{execCmd('insertParagraph', false, null)});
 selectParagraphStyle.addEventListener("change", ()=>{execCmd('formatBlock', false, selectParagraphStyle[selectParagraphStyle.selectedIndex].getAttribute('value'))});
 buttonHorizontalRule.addEventListener("click", ()=>{execCmd('insertHorizontalRule'), false, null});
-buttonInsertLink.addEventListener("click", ()=>{execCmd("createLink", false, prompt('Please enter a URL', 'http://'))});
+buttonInsertLink.addEventListener("click", ()=>{execCmdPrompt("createLink", false, prompt('Please enter a URL', 'http://'))});
 buttonRemoveLink.addEventListener("click", ()=>{execCmd("unlink", false, null)});
-buttonInlineSourceCode.addEventListener("click", ()=>{execCmd("insertHTML", false, prompt('Please insert the raw html here', 'Example: <h1>writeIt rocks!</h1>'))});
+buttonInlineSourceCode.addEventListener("click", ()=>{execCmdPrompt("insertHTML", false, prompt('Please insert the raw html here', 'Example: <h1>writeIt rocks!</h1>'))});
 buttonSourceCode.addEventListener("click", ()=>{toggleSource()});
 buttonToggleEdit.addEventListener("click", ()=>{toggleEdit()})
 selectFontStyle.addEventListener("change", ()=>{execCmd("fontName", false, selectFontStyle[selectFontStyle.selectedIndex].getAttribute('value', 'value'))});
@@ -80,9 +83,10 @@ inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, input
 inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor")}); //Need to work on this. Will this come in the function through a form?
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor")}); //need to work on this
 // buttonInsertImage.addEventListener("click", ()=>{execCmd("insertImage", false, prompt('Please enter the image url', 'http://'))}); //Need to work on this. Look past project
-buttonInsertOnlineImage.addEventListener("click", ()=>{execCmd("insertImage", false, prompt('Please enter the image url', 'http://'))});
+buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 
+buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()});
 
 
 
@@ -103,11 +107,15 @@ function execCmd(command, bool, value) {
   console.log(inputFontColor.getAttribute('value'));
   console.log(document.getElementsByClassName("fa-copy")[0].nodeValue);
   console.log(command);
-  console.log(this.document.body);
   richTextField.contentDocument.execCommand(command, bool, value)
 }
 
-
+//EXECCOMMAND FOR IMAGE
+function execCmdPrompt(command, bool, value) {
+  if (value !== null) {
+    richTextField.contentDocument.execCommand(command, bool, value)
+  }
+}
 
 //SWITCH FROM TEXT EDITOR TO RAW HTML
 let showingSourceCode = false; //A variable that defines if the view should be turned on or off
@@ -146,6 +154,13 @@ function toggleEdit() {
     isInEditMode = true;
   }
 }
+
+
+//CONNECT IFRAME TO THE TEXTAREA IN ORDER TO SUBMIT THE DATA TO DATABASE
+function registerIframeInfo(){
+  document.getElementById('textAreaNewArticle').value = document.getElementById("richTextField").contentDocument.body.innerHTML;
+}
+
 
 
 //FUNCTION CALLS
