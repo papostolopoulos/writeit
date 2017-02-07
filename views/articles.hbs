@@ -1,40 +1,27 @@
 
 
-<!-- MAIN SECTION -->
-
   <section class="homepageSections">
+
     <h1>Latest posts</h1>
     {{#each postings}}
+    <span class="hiddenSpan" value="{{body}}"></span>
+
+
     <article class="articleArea">
       <h3>{{title}}</h3>
       <h4>posted by: <a href="articles/{{username}}">{{username}}</a>.</h4>
       <h5>Date posted: {{date}}</h5>
       <iframe class="iFrameArticles">
 
-        </iframe>
-      <p>{{body}}</p>
+
+      </iframe>
     </article>
     {{/each}}
-
 
   </section>
 
 
-<script type="text/javascript">
-  var frames = document.getElementsByClassName("iFrameArticles");
-  for (let i = 0; i < frames.length; i++) {
-    frames[i].contentDocument.body.innerHTML = {{body}}
-    console.log(i);
-
-    // maybe frames.src?
-  }
-  (function () {
-
-  })
-</script>
-
-
-
+<script type="text/javascript" src="/javascripts/articles.js"></script>
 
 <!-- // #### articles
 // | field    | datatype         |
