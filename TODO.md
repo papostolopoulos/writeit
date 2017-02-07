@@ -163,12 +163,15 @@
 Perhaps as articles/pages/:username through form links
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
-* [] Connect the iframe to the textarea of the new form
+* [X] Connect the iframe to the textarea of the new form
+* [] expand the above to be applicable in all the
 * [] Render the correct format in the articles page and the individual pages with an iframe that has the right document inside it
 * [] upload image from hard drive
 * [] be able to set the modify the width and height of image
 * [] be able to modify colors bg, font, underline
-
+* [] figure out how to reset the colors
+* [] move title outside the form so that you can work on images loading
+* [] set up height of iframe
 
 
 

@@ -2,12 +2,16 @@
   <h1>My Posts</h1>
 
   {{#each postings}}
+  <span class="hiddenSpan" value="{{body}}"></span>
   <article class="articleArea">
     <h3>{{title}}</h3>
     <h4>posted by: {{username}}.</h4>
     <h5>Date posted: {{date}}</h5>
-    <p>{{body}}</p>
-    id: {{id}}
+    <iframe class="iFrameArticles">
+
+
+    </iframe>
+    <!-- id: {{id}} -->
     <div class="editButtons">
       <a href="{{username}}/{{id}}"><button type="button" name="button" title="View this post on its own page">viewIt</button></a>
       <a href="{{username}}/{{id}}/edit"><button type="button" name="button" title="Edit this post">changeIt</button></a>
@@ -18,3 +22,7 @@
   </article>
   {{/each}}
 </section>
+
+
+
+<script type="text/javascript" src="/javascripts/articles.js"></script>

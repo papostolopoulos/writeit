@@ -79,9 +79,9 @@ buttonSourceCode.addEventListener("click", ()=>{toggleSource()});
 buttonToggleEdit.addEventListener("click", ()=>{toggleEdit()})
 selectFontStyle.addEventListener("change", ()=>{execCmd("fontName", false, selectFontStyle[selectFontStyle.selectedIndex].getAttribute('value', 'value'))});
 selectFontSize.addEventListener("change", ()=>{execCmd("fontSize", false, selectFontSize[selectFontSize.selectedIndex].getAttribute('value'))});
-inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, inputFontColor.setAttribute('value'))}); //Need to work on this. Will this come in the function through a form?
-inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor")}); //Need to work on this. Will this come in the function through a form?
-inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor")}); //need to work on this
+inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, inputFontColor.value)}); //Not sure why the getAttribute("value")  does not work
+inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor", false, inputBackgroundColor.value)}); //Need to work on this. Will this come in the function through a form?
+inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
 // buttonInsertImage.addEventListener("click", ()=>{execCmd("insertImage", false, prompt('Please enter the image url', 'http://'))}); //Need to work on this. Look past project
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
@@ -105,6 +105,8 @@ function enableEditMode() {
 //EXECCOMMAND - ALLOWS US TO RUN COMMANDS TO MANIPULATE THE CONTENTS OF THE EDITABLE REGION
 function execCmd(command, bool, value) {
   console.log(inputFontColor.getAttribute('value'));
+  console.log(inputFontColor.value);
+
   console.log(document.getElementsByClassName("fa-copy")[0].nodeValue);
   console.log(command);
   richTextField.contentDocument.execCommand(command, bool, value)
