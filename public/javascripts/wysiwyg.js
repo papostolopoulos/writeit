@@ -37,12 +37,16 @@ let selectFontSize = document.getElementById("selectFontSize");
 let inputFontColor = document.getElementById("inputFontColor");
 let inputBackgroundColor = document.getElementById("inputBackgroundColor");
 let inputHighlightColor = document.getElementById("inputHighlightColor");
+let buttonClearColorSettings = document.getElementById("buttonClearColorSettings");
 let buttonInsertImage = document.getElementById("buttonInsertImage");
+let inputInsertImage = document.getElementById("inputInsertImage")
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
 let buttonSelectAll = document.getElementById("buttonSelectAll");
 
 let formNewArticle = document.getElementById("formNewArticle");
 let buttonSubmitNewArticle = document.getElementById("buttonSubmitNewArticle");
+let inputNewArticleTitleVisible = document.getElementById("inputNewArticleTitleVisible");
+let inputNewArticle = document.getElementById("inputNewArticle")
 
 
 
@@ -82,11 +86,13 @@ selectFontSize.addEventListener("change", ()=>{execCmd("fontSize", false, select
 inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, inputFontColor.value)}); //Not sure why the getAttribute("value")  does not work
 inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor", false, inputBackgroundColor.value)}); //Need to work on this. Will this come in the function through a form?
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
-// buttonInsertImage.addEventListener("click", ()=>{execCmd("insertImage", false, prompt('Please enter the image url', 'http://'))}); //Need to work on this. Look past project
+buttonClearColorSettings.addEventListener("click", clearColorSettings);
+inputInsertImage.addEventListener("change", ()=>{previewFile(inputInsertImage)}) //
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 
 buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()});
+inputNewArticleTitleVisible.addEventListener("keyup", inputUpdateTitle);
 
 
 
@@ -100,22 +106,22 @@ buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()})
 //ENABLE EDIT MODE FOR THE IFRAME AREA
 function enableEditMode() {
   richTextField.contentDocument.designMode = "On";
+  richTextField.contentDocument.body.focus();
 }
 
 //EXECCOMMAND - ALLOWS US TO RUN COMMANDS TO MANIPULATE THE CONTENTS OF THE EDITABLE REGION
 function execCmd(command, bool, value) {
-  console.log(inputFontColor.getAttribute('value'));
-  console.log(inputFontColor.value);
-
-  console.log(document.getElementsByClassName("fa-copy")[0].nodeValue);
-  console.log(command);
+  event.preventDefault();
   richTextField.contentDocument.execCommand(command, bool, value)
+  richTextField.contentDocument.body.focus();
 }
 
 //EXECCOMMAND FOR IMAGE
 function execCmdPrompt(command, bool, value) {
   if (value !== null) {
+    event.preventDefault();
     richTextField.contentDocument.execCommand(command, bool, value)
+    richTextField.contentDocument.body.focus();
   }
 }
 
@@ -141,6 +147,7 @@ let isInEditMode = true;
 function toggleEdit() {
   if (isInEditMode) {
     //Change the icon
+    event.preventDefault();
     toggleIcon.classList.add('fa-toggle-off');
     toggleIcon.classList.remove('fa-toggle-on');
     //switch off the editor
@@ -149,10 +156,12 @@ function toggleEdit() {
   }
   else {
     //Change the icon
+    event.preventDefault();
     toggleIcon.classList.add('fa-toggle-on');
     toggleIcon.classList.remove('fa-toggle-off');
     //Switch on the editor
     richTextField.contentDocument.designMode = "On";
+    richTextField.contentDocument.body.focus();
     isInEditMode = true;
   }
 }
@@ -161,6 +170,44 @@ function toggleEdit() {
 //CONNECT IFRAME TO THE TEXTAREA IN ORDER TO SUBMIT THE DATA TO DATABASE
 function registerIframeInfo(){
   document.getElementById('textAreaNewArticle').value = document.getElementById("richTextField").contentDocument.body.innerHTML;
+}
+
+
+//CLEAR THE COLOR SETTINGS FOR FONT, HIGHLIGHT AND BACKGROUND
+function clearColorSettings() {
+  console.log(inputFontColor);
+  inputFontColor.value = "#000000";
+  inputBackgroundColor.value = "#ffffff";
+  inputHighlightColor.value = "#ffffff";
+  richTextField.contentDocument.body.focus();
+}
+
+
+//UPDATE THE TITLE IN THE HIDDEN INPUT FROM ENTRY IN THE VISIBLE INPUT
+function inputUpdateTitle() {
+  inputNewArticleTitle.value = inputNewArticleTitleVisible.value
+}
+
+
+// //UPLOAD AND RENDER IMAGE FROM HARD DRIVE
+function previewFile(source) {
+  let newImage = document.createElement("img");
+
+  var file = source.files[0];
+  var reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    newImage.src = reader.result;
+  }, false);
+
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+  console.log(newImage);
+  newImage.style.width = "500px";
+  richTextField.contentDocument.body.appendChild(newImage);
+  richTextField.contentDocument.body.focus();
 }
 
 

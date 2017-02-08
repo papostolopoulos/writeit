@@ -6,10 +6,11 @@ var knex = require('../db/knex');
 // DISPLAY ALL THE POSTS
 router.get('/', function(req, res, next) {
   knex('articles') //table name
-    .select() //select all
+    .select('articles.id', 'articles.user_id', 'articles.title', 'articles.body', 'articles.date', 'users.username', 'users.email') //select all
     .innerJoin('users', 'articles.user_id', 'users.id')
     .orderBy('date', 'desc')
     .then(postings => { //define and give me the content
+      console.log(postings);
       res.render('articles', {
         postings: postings,
         user: req.session.user || 'visitor'
@@ -57,6 +58,33 @@ router.get('/:username', function(req, res, next) {
 });
 
 
+//DISPLAY ARTICLES FROM ONLY ONE USER BUT FOR OTHER USERS TO SEE
+router.get('/pages/:username', function(req, res, next) {
+  console.log("req.params:",req.params);
+  let username = req.params.username; //get the username from the url
+
+  // SELECT * FROM users INNER JOIN articles ON users.id = articles.user_id WHERE username='zoo' ORDER BY date DESC;
+  knex
+  .select('articles.id', 'articles.user_id', 'articles.title', 'articles.body', 'articles.date', 'users.username', 'users.email')
+  .table('articles')
+  .innerJoin('users', 'articles.user_id', 'users.id')
+  .where({username: username})
+  .orderBy('date', 'desc')
+  .returning('*')
+  .then((postings) => {
+
+    console.log(postings);
+    console.log(req.session.user);
+    res.render('userpostingspublic', {
+      postings: postings,
+      user: req.session.user || "visitor",
+      usernamepage: req.params.username
+    });
+  });
+
+});
+
+
 
 //GET UNIQUE ARTICLE FROM THIS USER
 router.get('/:username/:id', function(req, res, next) {
@@ -88,6 +116,44 @@ router.get('/:username/:id', function(req, res, next) {
       res.render('usersingleposting', {
         postings: postings,
         user: req.session.user || "visitor"
+      });
+    }
+
+  });
+});
+
+
+//GET UNIQUE ARTICLE FROM THIS USER but for other users to see
+router.get('/pages/:username/:id', function(req, res, next) {
+  console.log(req.params);
+  let username = req.params.username; //get the username from the url
+  let id = req.params.id;
+  knex('articles')
+  .select('articles.id', 'articles.user_id', 'articles.title', 'articles.body', 'articles.date', 'users.username', 'users.email')
+  .innerJoin('users', 'articles.user_id', 'users.id')
+  .where({
+    username: username,
+    'articles.id': req.params.id
+  })
+  // .orderBy('date', 'desc')
+  .returning('*')
+  .then((postings) => {
+
+    if (postings.length === 0) {
+      res.render('error', {
+        user: req.session.user || "visitor",
+        message: "404 - Page not found",
+      explanation: "The page you are looking for does not exist. You are either trying to search for a post that does not exist or a post that is registered under a different user.",
+      status: 404
+      })
+    }
+    else {
+      console.log(postings);
+      console.log(req.session.user);
+      res.render('usersinglepostingpublic', {
+        postings: postings,
+        user: req.session.user || "visitor",
+        usernamepage: req.params.username
       });
     }
 
@@ -128,7 +194,7 @@ router.post('/', (req, res, next) => {
     else {
       res.status(500);
       res.render('error', {
-        message: "Invalid entry (coming from articles.js)"
+        message: "Invalid entry. Both title and body of post must have content."
       })
     }
   });

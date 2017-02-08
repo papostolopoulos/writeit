@@ -4,24 +4,28 @@
 
     <h1>Latest posts</h1>
     {{#each postings}}
-    
+
 
 
     <article class="articleArea">
       <h3>{{title}}</h3>
-      <h4>posted by: <a href="articles/{{username}}">{{username}}</a>.</h4>
+      <h4>posted by: <a href="articles/pages/{{username}}">{{username}}</a>.</h4>
       <h5>Date posted: {{date}}</h5>
+      <span class="hiddenSpan" value="{{body}}"></span>
       <iframe class="iFrameArticles">
 
 
       </iframe>
+      <div class="editButtons">
+        <a href="/articles/pages/{{username}}/{{id}}"><button type="button" name="button" title="View this post on its own page">viewIt</button></a>
+      </div>
     </article>
     {{/each}}
 
   </section>
 
+  <script type="text/javascript" src="/javascripts/articles.js"></script>
 
-<script type="text/javascript" src="/javascripts/articles.js"></script>
 
 <!-- // #### articles
 // | field    | datatype         |

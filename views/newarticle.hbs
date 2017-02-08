@@ -1,130 +1,137 @@
 
 <section>
   <article class="" id="articleNewArticleArea">
+
+    <div id="divNewArticleTitle">
+      <h1>New post:</h1>
+      <label for="inputNewArticleTitleVisible">
+        <input type="text" name="title" value="" id="inputNewArticleTitleVisible" placeholder="Enter your title" required>
+      </label>
+    </div>
+
+    <div id="divNewPostIcons">
+      <div class="divButtonSeparator">
+        <select name="" id="selectFontStyle" title="font family">
+          <option value="Arial">Arial</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+          <option value="Courier">Courier</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Times New Roman" selected="selected">Times New Roman</option>
+          <option value="Verdana">Verdana</option>
+        </select>
+        <select name="" id="selectFontSize" title="font size">
+          <option value="1">Size 1</option>
+          <option value="2">Size 2</option>
+          <option value="3" selected="selected">Size 3</option>
+          <option value="4">Size 4</option>
+          <option value="5">Size 5</option>
+          <option value="6">Size 6</option>
+          <option value="7">Size 7</option>
+        </select>
+        <select name="" id="selectParagraphStyle" title="text type">
+          <option value="h1">Heading 1</option>
+          <option value="h2">Heading 2</option>
+          <option value="h3">Heading 3</option>
+          <option value="h4">Heading 4</option>
+          <option value="h5">Heading 5</option>
+          <option value="h6">Heading 6</option>
+          <option value="p" selected="selected">Paragraph</option>
+          <option value="blockquote">Blockquote</option>
+          <option value="address">Address</option>
+        </select>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonBold" title="bold"><i class="fa fa-bold" aria-hidden="true"></i></button>
+        <button id="buttonItalic" title="italic"><i class="fa fa-italic" aria-hidden="true"></i></button>
+        <button id="buttonUnderline" title="underline"><i class="fa fa-underline" aria-hidden="true"></i></button>
+        <button id="buttonStrikethrough" title="strikethrough"><i class="fa fa-strikethrough" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonSubscript" title="subscript"><i class="fa fa-subscript" aria-hidden="true"></i></button>
+        <button id="buttonSuperscript" title="superscript"><i class="fa fa-superscript" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonUndo" title="undo"><i class="fa fa-undo" aria-hidden="true"></i></button>
+        <button id="buttonRedo" title="redo"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonCut" title="cut"><i class="fa fa-cut" aria-hidden="true"></i></button>
+        <button id="buttonCopy" title="copy"><i class="fa fa-copy" aria-hidden="true"></i></button>
+        <button id="buttonPaste" title="paste"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+        <button id="buttonSelectAll" title="select all"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonSourceCode" title="toggle between HTML/text editor"><i class="fa fa-file-code-o" aria-hidden="true"></i></button>
+        <button id="buttonToggleEdit" title="turn editor off/on"><i id="toggleIcon" class="fa fa-toggle-on" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonJustifyLeft" title="align left"><i class="fa fa-align-left" aria-hidden="true"></i></button>
+        <button id="buttonJustifyCenter" title="align center"><i class="fa fa-align-center" aria-hidden="true"></i></button>
+        <button id="buttonJustifyRight" title="align right"><i class="fa fa-align-right" aria-hidden="true"></i></button>
+        <button id="buttonJustifyFull" title="justify"><i class="fa fa-align-justify" aria-hidden="true"></i></button>
+        <button id="buttonIndent" title="indent"><i class="fa fa-indent" aria-hidden="true"></i></button>
+        <button id="buttonOutdent" title="outdent"><i class="fa fa-outdent" aria-hidden="true"></i></button>
+        <button id="buttonInsertParagraph" title="insert paragraph"><i class="fa fa-paragraph" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonInsertUnorderedList" title="unordered list"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+        <button id="buttonInsertOrderedList" title="ordered list"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonHorizontalRule" title="horizontal rule"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonInsertLink" title="insert link"><i class="fa fa-link" aria-hidden="true"></i></button>
+        <button id="buttonRemoveLink" title="remove link"><i class="fa fa-unlink" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <!-- <form class="" action="index.html" method="post">
+          <label for="inputInsertImage"></label>
+          <button href="#" id="buttonInsertImage" title="insert Image"><i class="fa fa-picture-o" aria-hidden="true">
+          </i></button>
+        </form> -->
+        <input type="file" id="inputInsertImage" name="" value="">
+        <button id="buttonInsertOnlineImage" title="insert Online Image"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        <button id="buttonInlineSourceCode" title="insert raw HTML"><i class="fa fa-code" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="divButtonSeparator">
+        Font: <input id="inputFontColor" type="color" color="#000000">
+        Background: <input id="inputBackgroundColor" type="color">
+        Highlight: <input id="inputHighlightColor" type="color">
+        <button id="buttonClearColorSettings" title="clear color settings"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
+      </div>
+
+    </div>
+
     <form class="" id="formNewArticle" action="/articles" method="post">
       <!-- <input type="hidden" name="article_id" value="{{id}}"> CONFIRM IF YOU WANT THESE INFORMATION IN THIS AREA
       <input type="hidden" name="username" value="{{user}}">
       <input type="hidden" name="user_id" value="{{user_id}}">
       <input type="hidden" name="date" value="{{date}}"> -->
-      <div id="divNewArticleTitle">
-        <h1>New post:</h1>
-        <label for="inputNewArticleTitle" id="labelNewArticleTitle">
-          <input type="text" name="title" value="" id="inputNewArticleTitle" placeholder="Enter your title" required>
-        </label>
-      </div>
 
-      <div id="divNewPostIcons">
-        <div class="divButtonSeparator">
-          <select name="" id="selectFontStyle" title="font family">
-            <option value="Arial">Arial</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Courier">Courier</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Times New Roman" selected="selected">Times New Roman</option>
-            <option value="Verdana">Verdana</option>
-          </select>
-          <select name="" id="selectFontSize" title="font size">
-            <option value="1">Size 1</option>
-            <option value="2">Size 2</option>
-            <option value="3" selected="selected">Size 3</option>
-            <option value="4">Size 4</option>
-            <option value="5">Size 5</option>
-            <option value="6">Size 6</option>
-            <option value="7">Size 7</option>
-          </select>
-          <select name="" id="selectParagraphStyle" title="text type">
-            <option value="h1">Heading 1</option>
-            <option value="h2">Heading 2</option>
-            <option value="h3">Heading 3</option>
-            <option value="h4">Heading 4</option>
-            <option value="h5">Heading 5</option>
-            <option value="h6">Heading 6</option>
-            <option value="p" selected="selected">Paragraph</option>
-            <option value="blockquote">Blockquote</option>
-            <option value="address">Address</option>
-          </select>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonBold" title="bold"><i class="fa fa-bold" aria-hidden="true"></i></button>
-          <button id="buttonItalic" title="italic"><i class="fa fa-italic" aria-hidden="true"></i></button>
-          <button id="buttonUnderline" title="underline"><i class="fa fa-underline" aria-hidden="true"></i></button>
-          <button id="buttonStrikethrough" title="strikethrough"><i class="fa fa-strikethrough" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonSubscript" title="subscript"><i class="fa fa-subscript" aria-hidden="true"></i></button>
-          <button id="buttonSuperscript" title="superscript"><i class="fa fa-superscript" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonUndo" title="undo"><i class="fa fa-undo" aria-hidden="true"></i></button>
-          <button id="buttonRedo" title="redo"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonCut" title="cut"><i class="fa fa-cut" aria-hidden="true"></i></button>
-          <button id="buttonCopy" title="copy"><i class="fa fa-copy" aria-hidden="true"></i></button>
-          <button id="buttonPaste" title="paste"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
-          <button id="buttonSelectAll" title="select all"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonSourceCode" title="toggle between HTML/text editor"><i class="fa fa-file-code-o" aria-hidden="true"></i></button>
-          <button id="buttonToggleEdit" title="turn editor off/on"><i id="toggleIcon" class="fa fa-toggle-on" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonJustifyLeft" title="align left"><i class="fa fa-align-left" aria-hidden="true"></i></button>
-          <button id="buttonJustifyCenter" title="align center"><i class="fa fa-align-center" aria-hidden="true"></i></button>
-          <button id="buttonJustifyRight" title="align right"><i class="fa fa-align-right" aria-hidden="true"></i></button>
-          <button id="buttonJustifyFull" title="justify"><i class="fa fa-align-justify" aria-hidden="true"></i></button>
-          <button id="buttonIndent" title="indent"><i class="fa fa-indent" aria-hidden="true"></i></button>
-          <button id="buttonOutdent" title="outdent"><i class="fa fa-outdent" aria-hidden="true"></i></button>
-          <button id="buttonInsertParagraph" title="insert paragraph"><i class="fa fa-paragraph" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonInsertUnorderedList" title="unordered list"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
-          <button id="buttonInsertOrderedList" title="ordered list"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonHorizontalRule" title="horizontal rule"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonInsertLink" title="insert link"><i class="fa fa-link" aria-hidden="true"></i></button>
-          <button id="buttonRemoveLink" title="remove link"><i class="fa fa-unlink" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <!-- <form class="" action="index.html" method="post">
-            <label for="inputInsertImage"></label>
-            <button href="#" id="buttonInsertImage" title="insert Image"><i class="fa fa-picture-o" aria-hidden="true">
-            </i></button>
-              <input type="file" id="inputInsertImage" name="" value="">
-          </form> -->
-          <button id="buttonInsertOnlineImage" title="insert Online Image"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          <button id="buttonInlineSourceCode" title="insert raw HTML"><i class="fa fa-code" aria-hidden="true"></i></button>
-        </div>
-
-        <div class="divButtonSeparator">
-          Font: <input id="inputFontColor" type="color" color="#000000">
-          Background: <input id="inputBackgroundColor" type="color">
-          Highlight: <input id="inputHighlightColor" type="color">
-        </div>
-
-      </div>
+      <label for="inputNewArticleTitle" id="labelNewArticleTitle">
+        <input type="text" name="title" value="" id="inputNewArticleTitle" placeholder="This is the hidden one" required>
+      </label>
 
       <label for="textAreaNewArticle">
         <textarea name="body" rows="15" cols="100" id="textAreaNewArticle" placeholder="writeIt here"></textarea>
       </label>
-      <iframe name="richTextField" id="richTextField"></iframe>
+      <iframe name="richTextField" id="richTextField" autofocus="autofocus"></iframe>
 
       <div id="divNewArticleSubmitButtons">
         <label for="newArticleSubmit">

@@ -138,8 +138,6 @@
 * [X] Redirect to account exists page if the username already exists in the database
 * [X] Encrypt the password information for sign up (at index.js)
 * [X] Encrypt the password information for login (at index.js)
-* [] Require the password to have a specific length or set of characters (at index.js)
-* [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [X] Fix the height for the login area (at index.js)
 * [X] Display main information at header bar (at layout.js)
 * [X] Fix the form for submitting a new article
@@ -159,19 +157,26 @@
 * [X] put title attributes inside the header links
 * [X] set up the link for the viewIt button
 * [X] In the articles.js file update the router.get('/username/id') to redirect to an individual article page (need to create that)
-* [] The user's individual page should be viewable to the users. Create router option so that the random user can filter the option of viewing the posts of only one user
-Perhaps as articles/pages/:username through form links
-* [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
-* [] Create the option to the random user to view information of the other user that is interested about
 * [X] Connect the iframe to the textarea of the new form
-* [] expand the above to be applicable in all the
-* [] Render the correct format in the articles page and the individual pages with an iframe that has the right document inside it
+* [X] expand the above to be applicable in all the
+* [X] Render the correct format in the articles page and the individual pages with an iframe that has the right document inside it
+* [X] set up height of iframe
+* [X] make cursor flash when selecting options
+* [X] be able to modify colors bg, font, underline
+* [X] The user's individual page should be viewable to the users. Create router option so that the random user can filter the option of viewing the posts of only one user
+* [] Auto adjust iframe height
+* [] Modify the width of the imported images inside the iframe
+* [] image hard drive upload
+* [] video upload?
+* [] Require the password to have a specific length or set of characters (at index.js)
+* [] figure out clipboard and paste options
+* [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] upload image from hard drive
 * [] be able to set the modify the width and height of image
-* [] be able to modify colors bg, font, underline
 * [] figure out how to reset the colors
 * [] move title outside the form so that you can work on images loading
-* [] set up height of iframe
+* [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
+* [] Create the option to the random user to view information of the other user that is interested about
 
 
 

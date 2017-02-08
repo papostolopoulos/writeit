@@ -1,0 +1,22 @@
+<section class="homepageSections">
+  <h1>Post from {{usernamepage}}</h1>
+
+  {{#each postings}}
+  <article class="articleArea">
+    <span class="hiddenSpan" value="{{body}}"></span>
+    <h3>{{title}}</h3>
+    <h4>posted by: {{username}}.</h4>
+    <h5>Date posted: {{date}}</h5>
+    <iframe class="iFrameArticles">
+
+
+    </iframe>
+    <div class="editButtons">
+      <button type="button" name="button" onClick="history.go(-1);return true;" title="Cancel editing this post">forgetIt</button>
+    </div>
+  </article>
+  {{/each}}
+</section>
+
+
+<script type="text/javascript" src="/javascripts/articles.js"></script>

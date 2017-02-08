@@ -2,18 +2,12 @@
   <section>
     <h1>Edit post {{user}}</h1>
     <article class="" id="articleEditArticleArea">
-      <form class="" id="formEditArticle" action="/articles/{{user}}/{{id}}?_method=PUT" method="post">
-        <input type="hidden" name="article_id" value="{{id}}">
-        <input type="hidden" name="username" value="{{user}}">
-        <input type="hidden" name="user_id" value="{{user_id}}">
-        <input type="hidden" name="date" value="{{date}}">
-
-        <div id="divNewArticleTitle">
-          <h1>New post:</h1>
-          <label for="inputNewArticleTitle" id="labelNewArticleTitle">
-            <input type="text" name="title" id="inputNewArticleTitle"  placeholder="{{title}}" value="{{title}}" required>
-          </label>
-        </div>
+      <div id="divNewArticleTitle">
+        <h1>Edit post:</h1>
+        <label for="inputNewArticleTitleVisible">
+          <input type="text" name="title" value="" id="inputNewArticleTitleVisible" placeholder="Enter your title" required>
+        </label>
+      </div>
 
         <div id="divNewPostIcons">
           <div class="divButtonSeparator">
@@ -119,16 +113,29 @@
             Font: <input id="inputFontColor" type="color" color="#000000">
             Background: <input id="inputBackgroundColor" type="color">
             Highlight: <input id="inputHighlightColor" type="color">
+            <button id="buttonClearColorSettings" title="clear color settings"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
           </div>
 
         </div>
+
+      <form class="" id="formEditArticle" action="/articles/{{user}}/{{id}}?_method=PUT" method="post">
+        <input type="hidden" name="article_id" value="{{id}}">
+        <input type="hidden" name="username" value="{{user}}">
+        <input type="hidden" name="user_id" value="{{user_id}}">
+        <input type="hidden" name="date" value="{{date}}">
+
+
+        <label for="inputNewArticleTitle" id="labelNewArticleTitle">
+          <input type="text" name="title" id="inputNewArticleTitle"  placeholder="{{title}}" value="{{title}}" required>
+        </label>
+
 
         <label for="textAreaNewArticle">
           <span class="hiddenSpan" id="spanSingleArticle" value="{{body}}"></span>
           <textarea name="body" rows="15" cols="100" id="textAreaNewArticle" placeholder="writeIt here"></textarea>
         </label>
 
-        <iframe name="richTextField" id="richTextField"></iframe>
+        <iframe name="richTextField" id="richTextField" autofocus="autofocus"></iframe>
 
         <div id="divNewArticleSubmitButtons">
           <label for="newArticleSubmit">

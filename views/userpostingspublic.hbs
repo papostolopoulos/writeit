@@ -1,8 +1,9 @@
 
 
 <section class="homepageSections">
-  <h1>My Posts</h1>
+  <h1>Posts from {{usernamepage}}</h1>
 
+  {{username}}
   {{#each postings}}
   <span class="hiddenSpan" value="{{body}}"></span>
   <article class="articleArea">
@@ -13,13 +14,9 @@
 
 
     </iframe>
-    <!-- id: {{id}} -->
+    id: {{id}}
     <div class="editButtons">
       <a href="{{username}}/{{id}}"><button type="button" name="button" title="View this post on its own page">viewIt</button></a>
-      <a href="{{username}}/{{id}}/edit"><button type="button" name="button" title="Edit this post">changeIt</button></a>
-      <form class="singleSubmitButtonForm" action="/articles/{{username}}/{{id}}?_method=DELETE" method="post">
-        <button type="submit" name="button" title="Delete this post">scrapIt</button>
-      </form>
     </div>
   </article>
   {{/each}}
