@@ -447,7 +447,11 @@ input[type="color"]:hover {
 }
 
 #inputInsertImage {
-  /*display: none;*/
+  /*001-Box Model*/
+  /*002-Positioning*/
+  display: none;
+  /*003-Typography*/
+  /*004-Backgrounds*/
 }
 
 select {
@@ -476,15 +480,6 @@ select {
 #divNewArticleSubmitButtons {
   text-align: right;
 }
-
-.iframeImage{
-  width: 300px;
-}
-
-iframe img {
-  width: 300px;
-}
-
 
 /*
   ========================================

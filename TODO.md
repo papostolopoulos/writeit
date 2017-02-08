@@ -165,8 +165,8 @@
 * [X] be able to modify colors bg, font, underline
 * [X] The user's individual page should be viewable to the users. Create router option so that the random user can filter the option of viewing the posts of only one user
 * [] Auto adjust iframe height
-* [] Modify the width of the imported images inside the iframe
-* [] image hard drive upload
+* [X] Modify the width of the imported images inside the iframe
+* [X] image hard drive upload
 * [] video upload?
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] figure out clipboard and paste options
@@ -177,7 +177,9 @@
 * [] move title outside the form so that you can work on images loading
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
-
+* [] view list of users, have the option of clicking to view their posts
+* [X] see how I can insert image where cursor is at
+* [] decrease the size of the online uploaded image
 
 
 

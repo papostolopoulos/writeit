@@ -87,7 +87,8 @@ inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, input
 inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor", false, inputBackgroundColor.value)}); //Need to work on this. Will this come in the function through a form?
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
 buttonClearColorSettings.addEventListener("click", clearColorSettings);
-inputInsertImage.addEventListener("change", ()=>{previewFile(inputInsertImage)}) //
+buttonInsertImage.addEventListener("click", clickInputInsertImage);
+inputInsertImage.addEventListener("change", ()=>{previewImageFile(inputInsertImage)}) //
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 
@@ -189,12 +190,18 @@ function inputUpdateTitle() {
 }
 
 
-// //UPLOAD AND RENDER IMAGE FROM HARD DRIVE
-function previewFile(source) {
+//
+function clickInputInsertImage(){
+  inputInsertImage.click();
+}
+
+
+//UPLOAD AND RENDER IMAGE FROM HARD DRIVE
+function previewImageFile(source) {
   let newImage = document.createElement("img");
 
   var file = source.files[0];
-  var reader = new FileReader();
+  var reader = new FileReader(); //reads contents of files in the hard drive
 
   reader.addEventListener("load", function () {
     newImage.src = reader.result;
@@ -202,13 +209,78 @@ function previewFile(source) {
 
 
   if (file) {
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); //read contents of file and transform into base 64
   }
   console.log(newImage);
   newImage.style.width = "500px";
-  richTextField.contentDocument.body.appendChild(newImage);
+  // richTextField.contentDocument.body.appendChild(newImage);
+
+
+  //Find the right position for image to be inserted
+  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+  let iframeChildren = richTextField.contentDocument.body.children;
+  for (let i = 0; i < iframeChildren.length; i++) {
+    console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+    console.log("CursorText: " + cursorText.trim());
+    if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+      console.log("IN THE FIRST IF STATEMENT");
+      richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
+      return;
+    }
+  }
+
+  if (richTextField.contentDocument.body.innerHTML === "") {
+    richTextField.contentDocument.body.appendChild(newImage);
+  }
+  else if (richTextField.contentDocument.body.innerHTML !== "") {
+    console.log("Got in the else statement");
+    richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[0]);
+  }
+
   richTextField.contentDocument.body.focus();
 }
+
+
+
+//UPLOAD AND RENDER VIDEO FROM HARD DRIVE
+function previewVideoFile(source) {
+  let newImage = document.createElement("img");
+
+  var file = source.files[0];
+  var reader = new FileReader(); //reads contents of files in the hard drive
+
+  reader.addEventListener("load", function () {
+    newImage.src = reader.result;
+  }, false);
+
+
+  if (file) {
+    reader.readAsDataURL(file); //read contents of file and transform into base 64
+  }
+  console.log(newImage);
+  newImage.style.width = "500px";
+
+
+  //Find the right position for image to be inserted
+  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+  let iframeChildren = richTextField.contentDocument.body.children;
+  for (let i = 0; i < iframeChildren.length; i++) {
+    if (iframeChildren[i].innerHTML === cursorText) {
+      richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
+      return;
+    }
+  }
+
+  if (richTextField.contentDocument.body.innerHTML === "") {
+    richTextField.contentDocument.body.appendChild(newImage);
+  }
+  // else {
+  //   richTextField.contentDocument.body.appendChild(newImage);
+  // }
+
+  richTextField.contentDocument.body.focus();
+}
+
 
 
 
