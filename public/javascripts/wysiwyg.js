@@ -34,13 +34,17 @@ let buttonToggleEdit = document.getElementById("buttonToggleEdit");
 let toggleIcon = document.getElementById('toggleIcon');
 let selectFontStyle = document.getElementById("selectFontStyle");
 let selectFontSize = document.getElementById("selectFontSize");
+let buttonFontColor = document.getElementById("buttonFontColor");
 let inputFontColor = document.getElementById("inputFontColor");
-let inputBackgroundColor = document.getElementById("inputBackgroundColor");
+// let inputBackgroundColor = document.getElementById("inputBackgroundColor");
+let buttonHighlightColor = document.getElementById("buttonHighlightColor");
 let inputHighlightColor = document.getElementById("inputHighlightColor");
 let buttonClearColorSettings = document.getElementById("buttonClearColorSettings");
 let buttonInsertImage = document.getElementById("buttonInsertImage");
 let inputInsertImage = document.getElementById("inputInsertImage")
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
+let buttonInsertVideo = document.getElementById("buttonInsertVideo");
+let inputInsertVideo = document.getElementById("inputInsertVideo");
 let buttonSelectAll = document.getElementById("buttonSelectAll");
 
 let formNewArticle = document.getElementById("formNewArticle");
@@ -83,13 +87,17 @@ buttonSourceCode.addEventListener("click", ()=>{toggleSource()});
 buttonToggleEdit.addEventListener("click", ()=>{toggleEdit()})
 selectFontStyle.addEventListener("change", ()=>{execCmd("fontName", false, selectFontStyle[selectFontStyle.selectedIndex].getAttribute('value', 'value'))});
 selectFontSize.addEventListener("change", ()=>{execCmd("fontSize", false, selectFontSize[selectFontSize.selectedIndex].getAttribute('value'))});
+buttonFontColor.addEventListener("click", ()=>{clickInputInsert(inputFontColor)});
 inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, inputFontColor.value)}); //Not sure why the getAttribute("value")  does not work
-inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor", false, inputBackgroundColor.value)}); //Need to work on this. Will this come in the function through a form?
+// inputBackgroundColor.addEventListener("change", ()=>{execCmd("backColor", false, inputBackgroundColor.value)}); //Need to work on this. Will this come in the function through a form?
+buttonHighlightColor.addEventListener("click", ()=>{clickInputInsert(inputHighlightColor)});
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
 buttonClearColorSettings.addEventListener("click", clearColorSettings);
-buttonInsertImage.addEventListener("click", clickInputInsertImage);
+buttonInsertImage.addEventListener("click", ()=>{clickInputInsert(inputInsertImage)});
 inputInsertImage.addEventListener("change", ()=>{previewImageFile(inputInsertImage)}) //
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
+buttonInsertVideo.addEventListener("click", ()=>{clickInputInsert(inputInsertVideo)});
+inputInsertVideo.addEventListener("change", ()=>{previewVideoFile(inputInsertVideo)});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 
 buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()});
@@ -112,6 +120,7 @@ function enableEditMode() {
 
 //EXECCOMMAND - ALLOWS US TO RUN COMMANDS TO MANIPULATE THE CONTENTS OF THE EDITABLE REGION
 function execCmd(command, bool, value) {
+  console.log(command);
   event.preventDefault();
   richTextField.contentDocument.execCommand(command, bool, value)
   richTextField.contentDocument.body.focus();
@@ -177,9 +186,11 @@ function registerIframeInfo(){
 //CLEAR THE COLOR SETTINGS FOR FONT, HIGHLIGHT AND BACKGROUND
 function clearColorSettings() {
   console.log(inputFontColor);
-  inputFontColor.value = "#000000";
-  inputBackgroundColor.value = "#ffffff";
-  inputHighlightColor.value = "#ffffff";
+  execCmd("foreColor", false, "#000000");
+  execCmd("hiliteColor", false, "#ffffff");
+  // inputFontColor.value = "#000000";
+  // // inputBackgroundColor.value = "#ffffff";
+  // inputHighlightColor.value = "#ffffff";
   richTextField.contentDocument.body.focus();
 }
 
@@ -190,9 +201,9 @@ function inputUpdateTitle() {
 }
 
 
-//
-function clickInputInsertImage(){
-  inputInsertImage.click();
+//ACTIVATE INPUT TYPE=FILE TAGS BY CLICKING AT DIFFERENT BUTTONS
+function clickInputInsert(inputTag){
+  inputTag.click();
 }
 
 
@@ -220,11 +231,13 @@ function previewImageFile(source) {
   let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
   let iframeChildren = richTextField.contentDocument.body.children;
   for (let i = 0; i < iframeChildren.length; i++) {
-    console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+    console.log("innerHTML for position" + i + ":" + iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim());
     console.log("CursorText: " + cursorText.trim());
-    if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+    if (iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
       console.log("IN THE FIRST IF STATEMENT");
-      richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
+      // richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
+      iframeChildren[i].appendChild(newImage);
+
       return;
     }
   }
@@ -244,42 +257,135 @@ function previewImageFile(source) {
 
 //UPLOAD AND RENDER VIDEO FROM HARD DRIVE
 function previewVideoFile(source) {
-  let newImage = document.createElement("img");
+  let newVideoDiv = document.createElement("div");
+  let newVideo = document.createElement("video");
+  let newVideoSource = document.createElement("source");
+
+  newVideo.setAttribute("controls", "controls");
+  newVideo.setAttribute("allowfullscreen", "allowfullscreen");
+
+  newVideoSource.setAttribute("type", "video/mp4");
+  newVideo.style.width = "320px";
+  newVideo.appendChild(newVideoSource);
 
   var file = source.files[0];
   var reader = new FileReader(); //reads contents of files in the hard drive
 
   reader.addEventListener("load", function () {
-    newImage.src = reader.result;
+    newVideoSource.src = reader.result;
+    console.log("inside event listener");
+    console.log(newVideo);
+    richTextField.contentDocument.body.appendChild(newVideo);
+
   }, false);
 
 
   if (file) {
     reader.readAsDataURL(file); //read contents of file and transform into base 64
   }
-  console.log(newImage);
-  newImage.style.width = "500px";
+  console.log(newVideo);
 
+  // richTextField.contentDocument.body.appendChild(newVideo);
 
   //Find the right position for image to be inserted
-  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
-  let iframeChildren = richTextField.contentDocument.body.children;
-  for (let i = 0; i < iframeChildren.length; i++) {
-    if (iframeChildren[i].innerHTML === cursorText) {
-      richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
-      return;
-    }
-  }
-
-  if (richTextField.contentDocument.body.innerHTML === "") {
-    richTextField.contentDocument.body.appendChild(newImage);
-  }
-  // else {
-  //   richTextField.contentDocument.body.appendChild(newImage);
+  // let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+  // let iframeChildren = richTextField.contentDocument.body.children;
+  // for (let i = 0; i < iframeChildren.length; i++) {
+  //   console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+  //   console.log("CursorText: " + cursorText.trim());
+  //   if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+  //     console.log("IN THE FIRST IF STATEMENT");
+  //     // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
+  //     iframeChildren[i].appendChild(newVideo);
+  //     return;
+  //   }
+  // }
+  //
+  // if (richTextField.contentDocument.body.innerHTML === "") {
+  //   richTextField.contentDocument.body.appendChild(newVideo);
+  // }
+  // else if (richTextField.contentDocument.body.innerHTML !== "") {
+  //   console.log("Got in the else statement");
+  //   richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[0]);
   // }
 
   richTextField.contentDocument.body.focus();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function previewVideoFile(source) {
+//   let newVideoDiv = document.createElement("div");
+//   let newVideo = document.createElement("video");
+//   let newVideoSource = document.createElement("source");
+//
+//   newVideo.setAttribute("controls", "controls");
+//   newVideoSource.setAttribute("type", "video/mp4");
+//   newVideo.style.width = "320px";
+//   newVideo.appendChild(newVideoSource);
+//
+//   // let newVideoSource = "<source type=\"video/mp4\">";
+//   // newVideo.append(newVideoSource);
+//   console.log(newVideo);
+//
+//   var file = source.files[0];
+//   var reader = new FileReader(); //reads contents of files in the hard drive
+//
+//   reader.addEventListener("load", function () {
+//     newVideoSource.src = reader.result;
+//     console.log("inside event listener");
+//     console.log(newVideo);
+//     // richTextField.contentDocument.body.appendChild(newVideo);
+//   }, false);
+//
+//
+//   if (file) {
+//     reader.readAsDataURL(file); //read contents of file and transform into base 64
+//   }
+//   console.log(newVideo);
+//
+//   setTimeout(()=>{
+//     console.log("in timeout");
+//     // richTextField.contentDocument.body.appendChild(newVideo);
+//   }, 10000)
+//
+//
+//   //Find the right position for image to be inserted
+//   let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+//   let iframeChildren = richTextField.contentDocument.body.children;
+//   for (let i = 0; i < iframeChildren.length; i++) {
+//     console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+//     console.log("CursorText: " + cursorText.trim());
+//     if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+//       console.log("IN THE FIRST IF STATEMENT");
+//       // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
+//       iframeChildren[i].appendChild(newVideo);
+//       return;
+//     }
+//   }
+//
+//   if (richTextField.contentDocument.body.innerHTML === "") {
+//     richTextField.contentDocument.body.appendChild(newVideo);
+//   }
+//   else if (richTextField.contentDocument.body.innerHTML !== "") {
+//     console.log("Got in the else statement");
+//     richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[0]);
+//   }
+//
+//   richTextField.contentDocument.body.focus();
+// }
 
 
 

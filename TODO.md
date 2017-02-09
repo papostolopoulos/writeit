@@ -173,13 +173,15 @@
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] upload image from hard drive
 * [] be able to set the modify the width and height of image
-* [] figure out how to reset the colors
-* [] move title outside the form so that you can work on images loading
+* [X] figure out how to reset the colors of the Fonts
+* [X] move title outside the form so that you can work on images loading
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
 * [] view list of users, have the option of clicking to view their posts
 * [X] see how I can insert image where cursor is at
 * [] decrease the size of the online uploaded image
+* [] see if you want to modify the iframe's margin or remove the input
+* [] make site mobile friendly
 
 
 
@@ -192,3 +194,5 @@
 [X] cannot redirect to the unique user or unique articles page of the user from the nav bar
 [X] posting not saved in database even though it renders in front page
 [X] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set
+[] can upload videos of small size only
+[X] edit does not work REMINDER: CHECK ON YOUR CONSOLE

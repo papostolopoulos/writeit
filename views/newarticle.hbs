@@ -3,7 +3,7 @@
   <article class="" id="articleNewArticleArea">
 
     <div id="divNewArticleTitle">
-      <h1>New post:</h1>
+      <h1>New post title:</h1>
       <label for="inputNewArticleTitleVisible">
         <input type="text" name="title" value="" id="inputNewArticleTitleVisible" placeholder="Enter your title" required>
       </label>
@@ -68,6 +68,7 @@
 
       <div class="divButtonSeparator">
         <button id="buttonSourceCode" title="toggle between HTML/text editor"><i class="fa fa-file-code-o" aria-hidden="true"></i></button>
+        <button id="buttonInlineSourceCode" title="insert raw HTML"><i class="fa fa-code" aria-hidden="true"></i></button>
         <button id="buttonToggleEdit" title="turn editor off/on"><i id="toggleIcon" class="fa fa-toggle-on" aria-hidden="true"></i></button>
       </div>
 
@@ -100,18 +101,16 @@
         <input type="file" id="inputInsertImage" name="" value="">
         <button id="buttonInsertOnlineImage" title="insert online image"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
         <button id="buttonInsertVideo" title="insert video"><i class="fa fa-file-video-o" aria-hidden="true"></i></button>
-        <button id="buttonInsertOnlineVideo" title="insert online video"><i class="fa fa-video-camera" aria-hidden="true"></i></button>
+        <input type="file" id="inputInsertVideo" name="" value="">
       </div>
 
       <div class="divButtonSeparator">
-        <button id="buttonInlineSourceCode" title="insert raw HTML"><i class="fa fa-code" aria-hidden="true"></i></button>
-      </div>
-
-      <div class="divButtonSeparator">
-        Font: <input id="inputFontColor" type="color" color="#000000">
-        Background: <input id="inputBackgroundColor" type="color">
-        Highlight: <input id="inputHighlightColor" type="color">
-        <button id="buttonClearColorSettings" title="clear color settings"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
+        <button id="buttonFontColor" title="Change the font color"><i class="fa fa-font" aria-hidden="true"></i></button>
+        <input id="inputFontColor" type="color" color="#000000">
+        <!-- Background: <input id="inputBackgroundColor" type="color"> -->
+        <button id="buttonHighlightColor" title="Change the highlight color"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
+        <input id="inputHighlightColor" type="color">
+        <button id="buttonClearColorSettings" title="clear color settings"><i class="fa fa-eraser" aria-hidden="true"></i></button>
       </div>
 
     </div>

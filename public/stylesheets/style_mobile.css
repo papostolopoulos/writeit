@@ -1,0 +1,302 @@
+@media screen and (max-width: 768px) {
+
+  #container {
+  	/*001-Box Model*/
+  	width: 100%;
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	/*004-Backgrounds*/
+  }
+
+  header {
+  	/*001-Box Model*/
+  	height: 60px;
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	/*004-Backgrounds*/
+  }
+
+  #logoDiv {
+  	/*001-Box Model*/
+  	padding-left: 5px;
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	/*004-Backgrounds*/
+  }
+
+  #logoDiv a {
+  	/*001-Box Model*/
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	font-size: 250%;
+  	/*004-Backgrounds*/
+  }
+
+  #logoDiv a .fa-pencil-square-o {
+  	/*001-Box Model*/
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	line-height: 60px;
+  	/*004-Backgrounds*/
+  }
+
+  #headerUserAreaDiv {
+    /*001-Box Model*/
+    /*002-Positioning*/
+    display: none;
+    /*003-Typography*/
+    /*004-Backgrounds*/
+  }
+
+  #headerUserAreaDivMobile{
+    /*001-Box Model*/
+    height: inherit;
+    width:45%;
+    padding-right: 10px;
+    /*002-Positioning*/
+    display: inline-block;
+    float: right;
+    /*003-Typography*/
+    text-align: right;
+    color: rgb(255, 255, 255);
+    /*line-height: 65px; /*extra alignment is happening from the padding done to the tds of the table*/*/
+    /*004-Backgrounds*/
+  }
+
+  #divUserLoginName {
+    display: inline-block;
+    font-size: 50%;
+  }
+
+  #divHamburger{
+    display: inline-block;
+  }
+
+  #divNavLinks {
+    width: 66%;
+    float: right;
+  }
+
+  nav ul, nav:active ul {
+    /*001-Box Model*/
+    display: none;
+    width: 30%;
+    /*margin-right: -6px;*/
+    border: 2px solid rgb(221, 164, 72);
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    /*002-Positioning*/
+    z-index: 1000;
+    position: absolute;
+    float: right;
+    /*003-Typography*/
+    text-align: center;
+    /*004-Backgrounds*/
+    background-color: rgb(142, 40, 37);
+
+  }
+
+  nav:hover ul {
+    display: block;
+  }
+
+  #headerUserAreaDivMobile nav ul {
+
+  }
+
+  #headerUserAreaDivMobile nav ul li {
+    padding: 5px 5px 0 5px;
+  }
+
+  #headerUserAreaDivMobile nav ul li a {
+    /*001-Box Model*/
+    /*002-Positioning*/
+    /*003-Typography*/
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    /*004-Backgrounds*/
+  }
+
+#headerUserAreaDivMobile nav ul li a:active, #userLoginName:active {
+  color: rgb(221, 164, 72);
+}
+
+  #userLoginName{
+    /*001-Box Model*/
+    /*002-Positioning*/
+    /*003-Typography*/
+    font-size: 70%;
+    font-weight: 600;
+    /*004-Backgrounds*/
+  }
+
+  .fa-bars { /*burger icon*/
+    /*001-Box Model*/
+    /*002-Positioning*/
+    /*003-Typography*/
+    font-size: 250%;
+    line-height: 60px;
+    color: rgb(255, 255, 255);
+    /*004-Backgrounds*/
+  }
+
+  #logoutSubmitMobile {
+    /*001-Box Model*/
+    border: none;
+    padding: 0 0 10px 0;
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    /*002-Positioning*/
+    /*003-Typography*/
+    /*004-Backgrounds*/
+    background-color: none;
+  }
+
+  #loginSection, #signupSection {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 95%;
+    min-height: auto;
+  }
+
+
+ .loginPageForms table tr td {
+   padding: 1px;
+ }
+
+  .homepageSections {
+    padding: 0;
+  }
+
+  main {
+    padding-bottom: 60px;
+  }
+
+  footer {
+  	/*001-Box Model*/
+  	height:60px;
+  	/*002-Positioning*/
+  	/*003-Typography*/
+  	line-height: 60px;
+  	font-size: 80%;
+  	/*004-Backgrounds*/
+  }
+
+  #sectionHomepageBottom {
+    /*001-Box Model*/
+    padding-bottom: 20px;
+    /*002-Positioning*/
+    /*003-Typography*/
+    /*004-Backgrounds*/
+  }
+
+  section {
+    /*001-Box Model*/
+    /*002-Positioning*/
+    padding: 4px;
+    /*003-Typography*/
+    /*004-Backgrounds*/
+  }
+
+  #inputNewArticleTitle, #inputNewArticleTitleVisible {
+    /*001-Box Model*/
+    /*002-Positioning*/
+    /*003-Typography*/
+    font-size: 80%;
+    /*004-Backgrounds*/
+  }
+
+  #divNewArticleTitle {
+    padding-left: 4px;
+  }
+
+  #divNewArticleTitle h1 {
+    /*001-Box Model*/
+    /*002-Positioning*/
+    display: inline;
+    /*003-Typography*/
+    font-size: 100%;
+    /*004-Backgrounds*/
+  }
+
+  select{
+    font-size: 60%;
+  }
+
+  .divButtonSeparator {
+    /*001-Box Model*/
+    padding: 2px 4px 0 0;
+    margin-bottom: 0;
+    border-right: 0;
+    height: 34px;
+    /*002-Positioning*/
+    display: inline-block;
+    /*003-Typography*/
+    line-height: 0;
+    /*004-Backgrounds*/
+  }
+
+  .divButtonSeparator button {
+    margin-right: -3px;
+  }
+
+
+
+
+  /*
+    ========================================
+    Fonts Typography
+    ========================================
+  */
+
+  .homepageSections {
+    padding: 5px 0; /*See if you are going to keep this because the headings are padded too*/
+  }
+
+  .homepageSections h1 {
+  	font-size: 200%;
+    line-height: 100%;
+  	padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .homepageSections h2 {
+  	font-size: 150%;
+  	line-height: 100%;
+  	margin: 0;
+  }
+
+  .homepageSections h3 {
+  	font-size: 120%;
+    margin: 0;
+  }
+
+  .articleArea h3 {
+    font-size: 120%;
+    line-height: 120%;
+    margin-bottom: 5px;
+  }
+
+  .articleArea h4 {
+    font-size: 90%;
+  }
+
+  .articleArea h4 a {
+    color: rgb(221, 164, 72);
+  }
+
+  .homepageSections a {
+    color: rgb(255, 255, 255);
+  }
+
+  .homepageSections a:hover {
+    color: rgb(82, 24, 20);
+  }
+
+  #signupHeading {
+  	text-align: center;
+  }
+
+
+
+
+
+} /*END OF BRACKETS FOR ALL THE CSS FORMATS*/

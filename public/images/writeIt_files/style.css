@@ -55,11 +55,6 @@ header {
 	background-color: rgb(187, 52, 47);
 }
 
-.rightHeaderArea {
-	text-align: center;
-	line-height: 100px;
-}
-
 #logoDiv {
 	/*001-Box Model*/
 	height: inherit;

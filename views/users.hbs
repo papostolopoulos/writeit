@@ -3,9 +3,8 @@ You are in the users page
 
 {{#each usersTable}}
 <article class="articleArea">
-  <h3>{{username}} has an id of {{id}}</h3>
+  <h3> <a href="/articles/pages/{{username}}">{{username}}</a> has an id of {{id}}</h3>
   <h4>email: {{email}}.</h4>
-  <h5>password: {{password}}</h5>
 </article>
 {{/each}}
 
