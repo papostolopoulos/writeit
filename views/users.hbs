@@ -1,12 +1,17 @@
-You are in the users page
+<section class="homepageSections">
 
+  <h1>Users list</h1>
 
-{{#each usersTable}}
-<article class="articleArea">
-  <h3> <a href="/articles/pages/{{username}}">{{username}}</a> has an id of {{id}}</h3>
-  <h4>email: {{email}}.</h4>
-</article>
-{{/each}}
+  {{#each usersTable}}
+  <article class="articleArea">
+    <h3> <a href="/articles/pages/{{username}}">{{username}}</a> has an id of {{id}}</h3>
+    <h4>email: {{email}}.</h4>
+  </article>
+  {{/each}}
+
+  
+</section>
+
 
 <!--
 // | field      | datatype    |
