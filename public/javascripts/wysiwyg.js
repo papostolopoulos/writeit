@@ -1,5 +1,4 @@
 // window.onload = () => {
-console.log("Inside the scripts file");
 
 
 //VARIABLE DECLARATIONS
@@ -80,7 +79,7 @@ buttonInsertOrderedList.addEventListener("click", ()=>{execCmd('insertOrderedLis
 buttonInsertParagraph.addEventListener("click", ()=>{execCmd('insertParagraph', false, null)});
 selectParagraphStyle.addEventListener("change", ()=>{execCmd('formatBlock', false, selectParagraphStyle[selectParagraphStyle.selectedIndex].getAttribute('value'))});
 buttonHorizontalRule.addEventListener("click", ()=>{execCmd('insertHorizontalRule'), false, null});
-buttonInsertLink.addEventListener("click", ()=>{execCmdPrompt("createLink", false, prompt('Please enter a URL', 'http://'))});
+buttonInsertLink.addEventListener("click", ()=>{execCmd("createLink", false, prompt('Please enter a URL', 'http://'))});
 buttonRemoveLink.addEventListener("click", ()=>{execCmd("unlink", false, null)});
 buttonInlineSourceCode.addEventListener("click", ()=>{execCmdPrompt("insertHTML", false, prompt('Please insert the raw html here', 'Example: <h1>writeIt rocks!</h1>'))});
 buttonSourceCode.addEventListener("click", ()=>{toggleSource()});
@@ -97,7 +96,7 @@ buttonInsertImage.addEventListener("click", ()=>{clickInputInsert(inputInsertIma
 inputInsertImage.addEventListener("change", ()=>{previewImageFile(inputInsertImage)}) //
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonInsertVideo.addEventListener("click", ()=>{clickInputInsert(inputInsertVideo)});
-inputInsertVideo.addEventListener("change", ()=>{previewVideoFile(inputInsertVideo)});
+inputInsertVideo.addEventListener("change", ()=>{findPositionAndUpload(inputInsertVideo)});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 
 buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()});
@@ -213,7 +212,6 @@ function previewImageFile(source) {
 
   var file = source.files[0];
   var reader = new FileReader(); //reads contents of files in the hard drive
-
   reader.addEventListener("load", function () {
     newImage.src = reader.result;
   }, false);
@@ -223,16 +221,17 @@ function previewImageFile(source) {
     reader.readAsDataURL(file); //read contents of file and transform into base 64
   }
   console.log(newImage);
-  newImage.style.width = "500px";
-  // richTextField.contentDocument.body.appendChild(newImage);
-
+  newImage.style.width = "640px";
+  // newImage.style.resize = "both";
+  // newImage.style.overflow = "auto";
+  // newImage.className = "newImage"
 
   //Find the right position for image to be inserted
   let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
   let iframeChildren = richTextField.contentDocument.body.children;
   for (let i = 0; i < iframeChildren.length; i++) {
     console.log("innerHTML for position" + i + ":" + iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim());
-    console.log("CursorText: " + cursorText.trim());
+    // console.log("CursorText: " + cursorText.trim());
     if (iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
       console.log("IN THE FIRST IF STATEMENT");
       // richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
@@ -241,7 +240,6 @@ function previewImageFile(source) {
       return;
     }
   }
-
   if (richTextField.contentDocument.body.innerHTML === "") {
     richTextField.contentDocument.body.appendChild(newImage);
   }
@@ -249,106 +247,136 @@ function previewImageFile(source) {
     console.log("Got in the else statement");
     richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[0]);
   }
-
+  //Focus the document
   richTextField.contentDocument.body.focus();
 }
 
 
 
 //UPLOAD AND RENDER VIDEO FROM HARD DRIVE
-function previewVideoFile(source) {
-  let newVideoDiv = document.createElement("div");
-  let newVideo = document.createElement("video");
-  let newVideoSource = document.createElement("source");
-
-  newVideo.setAttribute("controls", "controls");
-  newVideo.setAttribute("allowfullscreen", "allowfullscreen");
-
-  newVideoSource.setAttribute("type", "video/mp4");
-  newVideo.style.width = "320px";
-  newVideo.appendChild(newVideoSource);
-
-  var file = source.files[0];
+//preview the information coming from the source
+function previewVideoFile(dataSource, videoSource) {
+  var file = dataSource.files[0];
   var reader = new FileReader(); //reads contents of files in the hard drive
 
-  reader.addEventListener("load", function () {
-    newVideoSource.src = reader.result;
+  reader.addEventListener("load", ()=>{
+    videoSource.src = reader.result;
     console.log("inside event listener");
-    console.log(newVideo);
-    richTextField.contentDocument.body.appendChild(newVideo);
 
+    var dataURL = reader.result; //Get the information about the type of the file being imported
+    var mimeType = dataURL.split(",")[0].split(":")[1].split(";")[0];
+    videoSource.setAttribute("type", mimeType);
+    console.log(videoSource.getAttribute("type"));
   }, false);
-
 
   if (file) {
     reader.readAsDataURL(file); //read contents of file and transform into base 64
+    console.log(file);
   }
-  console.log(newVideo);
+}
 
-  // richTextField.contentDocument.body.appendChild(newVideo);
 
-  //Find the right position for image to be inserted
-  // let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
-  // let iframeChildren = richTextField.contentDocument.body.children;
-  // for (let i = 0; i < iframeChildren.length; i++) {
-  //   console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
-  //   console.log("CursorText: " + cursorText.trim());
-  //   if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
-  //     console.log("IN THE FIRST IF STATEMENT");
-  //     // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
-  //     iframeChildren[i].appendChild(newVideo);
-  //     return;
-  //   }
-  // }
-  //
-  // if (richTextField.contentDocument.body.innerHTML === "") {
-  //   richTextField.contentDocument.body.appendChild(newVideo);
-  // }
-  // else if (richTextField.contentDocument.body.innerHTML !== "") {
-  //   console.log("Got in the else statement");
-  //   richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[0]);
-  // }
+// find position in document and upload media file
+function findPositionAndUpload(source) {
 
-  richTextField.contentDocument.body.focus();
+  let newVideo = document.createElement("video");
+  let newVideoSource = document.createElement("source");
+  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+  let iframeChildren = richTextField.contentDocument.body.children;
+
+  newVideo.setAttribute("controls", "controls");
+  newVideo.setAttribute("allowfullscreen", "allowfullscreen");
+  newVideo.style.width = "640px";
+  // newVideo.className = "newVideo";
+  newVideo.appendChild(newVideoSource);
+
+  if (richTextField.contentDocument.body.textContent === "") { //If the iframe is empty
+    console.log("first if statement");
+    previewVideoFile(source, newVideoSource);
+    setTimeout(function(){
+      richTextField.contentDocument.body.appendChild(newVideo);
+      richTextField.contentDocument.body.append(".");
+      richTextField.contentDocument.body.focus();
+    }, 1000);
+  }
+  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length === 0) {//If the iframe has text but no html children
+    previewVideoFile(source, newVideoSource);
+    setTimeout(function(){
+      richTextField.contentDocument.body.appendChild(newVideo);
+      richTextField.contentDocument.body.append(".");
+      richTextField.contentDocument.body.focus();
+    }, 1000);
+  }
+  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length !== 0) {//The iframe has both content and html childrean
+    for (let i = 0; i < iframeChildren.length; i++) {
+      console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+      console.log(cursorText);
+      console.log(iframeChildren[i].textContent);
+      // console.log("CursorText: " + cursorText.trim());
+      if (cursorText === undefined && iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === "") {
+        console.log("IN THE IF OF THE ELSE");
+        previewVideoFile(source, newVideoSource);
+        setTimeout(function(){
+          iframeChildren[i].appendChild(newVideo);
+          richTextField.contentDocument.body.append(".");
+          richTextField.contentDocument.body.focus();
+        }, 1000);
+        return;
+      }
+      else if (iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+        console.log("IN THE ELSE IF OF THE ELSE");
+        // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
+        previewVideoFile(source, newVideoSource);
+        setTimeout(function(){
+          iframeChildren[i].appendChild(newVideo);
+          richTextField.contentDocument.body.append(".");
+          richTextField.contentDocument.body.focus();
+        }, 1000);
+        return;
+      }
+    }
+  }
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+// //UPLOAD AND RENDER VIDEO FROM HARD DRIVE
 // function previewVideoFile(source) {
-//   let newVideoDiv = document.createElement("div");
 //   let newVideo = document.createElement("video");
 //   let newVideoSource = document.createElement("source");
 //
 //   newVideo.setAttribute("controls", "controls");
-//   newVideoSource.setAttribute("type", "video/mp4");
-//   newVideo.style.width = "320px";
-//   newVideo.appendChild(newVideoSource);
+//   newVideo.setAttribute("allowfullscreen", "allowfullscreen");
 //
-//   // let newVideoSource = "<source type=\"video/mp4\">";
-//   // newVideo.append(newVideoSource);
-//   console.log(newVideo);
+//   newVideo.style.width = "640px";
+//   newVideo.appendChild(newVideoSource);
 //
 //   var file = source.files[0];
 //   var reader = new FileReader(); //reads contents of files in the hard drive
 //
-//   reader.addEventListener("load", function () {
+//   reader.addEventListener("load", (event)=>{
 //     newVideoSource.src = reader.result;
 //     console.log("inside event listener");
+//     console.log(reader.result === event.target.result);
+//
+//     var dataURL = event.target.result;
+//   var mimeType = dataURL.split(",")[0].split(":")[1].split(";")[0];
+//   newVideoSource.setAttribute("type", mimeType);
+//   console.log(newVideoSource.getAttribute("type"));
+//
 //     console.log(newVideo);
 //     // richTextField.contentDocument.body.appendChild(newVideo);
 //   }, false);
+//
+//   // reader.addEventListener("error", (event)=>{
+//   //   console.log(event);
+//   // });
+//   //
+//   // reader.addEventListener("abort", (event)=>{
+//   //   console.log(event);
+//   // });
+//
 //
 //
 //   if (file) {
@@ -356,36 +384,38 @@ function previewVideoFile(source) {
 //   }
 //   console.log(newVideo);
 //
-//   setTimeout(()=>{
-//     console.log("in timeout");
-//     // richTextField.contentDocument.body.appendChild(newVideo);
-//   }, 10000)
-//
 //
 //   //Find the right position for image to be inserted
 //   let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
 //   let iframeChildren = richTextField.contentDocument.body.children;
-//   for (let i = 0; i < iframeChildren.length; i++) {
-//     console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
-//     console.log("CursorText: " + cursorText.trim());
-//     if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
-//       console.log("IN THE FIRST IF STATEMENT");
-//       // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
-//       iframeChildren[i].appendChild(newVideo);
-//       return;
+//
+//   if (richTextField.contentDocument.body.innerHTML === "") { //If the iframe is empty
+//     richTextField.contentDocument.body.appendChild(newVideo);
+//     richTextField.contentDocument.body.append(" ");
+//   }
+//   else if (richTextField.contentDocument.body.innerHTML !== "" && richTextField.contentDocument.body.children.length !== 0) {
+//     console.log("Got in the else statement");
+//     richTextField.contentDocument.body.appendChild(newVideo);
+//     richTextField.contentDocument.body.append("");
+//   }
+//   else {
+//     for (let i = 0; i < iframeChildren.length; i++) {
+//       console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+//       console.log("CursorText: " + cursorText.trim());
+//       if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
+//         console.log("IN THE FIRST IF STATEMENT. TEXT OF IFRAME IN ENDCONTAINERDATA");
+//         // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
+//         iframeChildren[i].appendChild(newVideo);
+//         return;
+//       }
 //     }
 //   }
 //
-//   if (richTextField.contentDocument.body.innerHTML === "") {
-//     richTextField.contentDocument.body.appendChild(newVideo);
-//   }
-//   else if (richTextField.contentDocument.body.innerHTML !== "") {
-//     console.log("Got in the else statement");
-//     richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[0]);
-//   }
+//
 //
 //   richTextField.contentDocument.body.focus();
 // }
+
 
 
 
@@ -400,7 +430,6 @@ enableEditMode();
 
 
 
-//bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
 /*
 Parameters
 

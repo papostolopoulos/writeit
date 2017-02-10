@@ -167,21 +167,24 @@
 * [] Auto adjust iframe height
 * [X] Modify the width of the imported images inside the iframe
 * [X] image hard drive upload
-* [] video upload?
+* [X] video upload?
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] figure out clipboard and paste options
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
-* [] upload image from hard drive
-* [] be able to set the modify the width and height of image
+* [X] upload image from hard drive
 * [X] figure out how to reset the colors of the Fonts
 * [X] move title outside the form so that you can work on images loading
+* [X] see how I can insert image where cursor is at
+* [X] decrease the size of the online uploaded image
+* [X] see if you want to modify the iframe's margin or remove the input
+* [X] make site mobile friendly
+* [X] fix image bug for uploading in blank page with no content yet
+* [X] create an about page
+* [] be able to set the modify the width and height of image
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
 * [] view list of users, have the option of clicking to view their posts
-* [X] see how I can insert image where cursor is at
-* [] decrease the size of the online uploaded image
-* [] see if you want to modify the iframe's margin or remove the input
-* [] make site mobile friendly
+* [] set size of the video image by dragging
 
 
 
@@ -194,5 +197,6 @@
 [X] cannot redirect to the unique user or unique articles page of the user from the nav bar
 [X] posting not saved in database even though it renders in front page
 [X] Cannot redirect a route from newPosts. app.js does not connect to page - route is set, app.use is set
-[] can upload videos of small size only
+[X] can upload videos of small size only
 [X] edit does not work REMINDER: CHECK ON YOUR CONSOLE
+[] iframe height

@@ -28,7 +28,7 @@ router.get('/:username', function(req, res, next) {
       if (users.length === 0) {
         res.render ('error', {
           message: "403 - Forbidden",
-          explanation: "Sorry, you are trying to access a user settings page while you are not logged in as that user",
+          explanation: "Sorry, you are trying to access a user settings page while you are not logged in.",
           status: 403
         })
         // res.render('userdoesnotexist', {

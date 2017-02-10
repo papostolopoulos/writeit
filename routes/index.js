@@ -200,6 +200,14 @@ router.get('/logout', (req, res, next) => {
 });
 
 
+//ABOUT PAGE
+router.get('/about', (req, res, next) => {
+  res.render('about', {
+    user: req.session.user || "visitor"
+  })
+});
+
+
 
 
 //FUNCTIONS
