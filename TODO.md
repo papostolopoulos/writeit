@@ -164,13 +164,9 @@
 * [X] make cursor flash when selecting options
 * [X] be able to modify colors bg, font, underline
 * [X] The user's individual page should be viewable to the users. Create router option so that the random user can filter the option of viewing the posts of only one user
-* [] Auto adjust iframe height
 * [X] Modify the width of the imported images inside the iframe
 * [X] image hard drive upload
 * [X] video upload?
-* [] Require the password to have a specific length or set of characters (at index.js)
-* [] figure out clipboard and paste options
-* [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [X] upload image from hard drive
 * [X] figure out how to reset the colors of the Fonts
 * [X] move title outside the form so that you can work on images loading
@@ -180,11 +176,16 @@
 * [X] make site mobile friendly
 * [X] fix image bug for uploading in blank page with no content yet
 * [X] create an about page
+* [X] Auto adjust iframe height
+* [] Require the password to have a specific length or set of characters (at index.js)
+* [] figure out clipboard and paste options
+* [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] be able to set the modify the width and height of image
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
 * [] view list of users, have the option of clicking to view their posts
 * [] set size of the video image by dragging
+* [] see if you can apply cloudinary
 
 
 
