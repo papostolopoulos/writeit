@@ -369,6 +369,14 @@ $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
         let htmlVideoTag = "<video poster=" + newVideoSource + "jpg controls><source src=\"" + newVideoSource + "mp4\"/></video>"
         execCmdPrompt("insertHTML", false, htmlVideoTag);
       }
+      else if (data.result.path.slice(data.result.path.length - 3) === "gif") {
+        let newGifSource = "https://res.cloudinary.com/writeit/image/upload/w_320,q_80/" + data.result.path.slice(0, data.result.path.length - 3);
+        let htmlGifVideoTag = "<video poster=" + newGifSource + "jpg autoplay loop><source src=\"" + newGifSource + "mp4\"/></video>"
+        execCmdPrompt("insertHTML", false, htmlGifVideoTag);
+      }
+      else {
+        alert("The file you are trying to upload is not supported");
+      }
   })
 );
 

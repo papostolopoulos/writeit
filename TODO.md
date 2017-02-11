@@ -177,20 +177,25 @@
 * [X] fix image bug for uploading in blank page with no content yet
 * [X] create an about page
 * [X] Auto adjust iframe height
+* [X] view list of users, have the option of clicking to view their posts
+* [X] see if you can apply cloudinary
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] figure out clipboard and paste options
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] be able to set the modify the width and height of image
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
-* [] view list of users, have the option of clicking to view their posts
-* [] set size of the video image by dragging
-* [] see if you can apply cloudinary
 * [] Check if you need to enable an event listener for the resizing http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_size
 
 
 
-
+17:20 resize image directly on the url, modify quality, format from jpg, png to webP (png to jpg fl_lossy) w_140 c_thumb q_80 f_auto res.claudinary.com/demo/image/upload
+Web: resize + "f-auto,fl_lossy,q_XX"
+Native: resize + "f_webp,fl_lossy,q_XX" (ios with libwebp)
+36:10 responsive design
+cloud_name: writeIt
+api key: 957122638812785
+http://res.cloudinary.com/my_cloud_name/...
 
 [X] Cannot hash password in a synchronous way
 [X] Cannot render postings in the user's page
