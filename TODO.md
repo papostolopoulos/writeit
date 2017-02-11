@@ -186,6 +186,7 @@
 * [] view list of users, have the option of clicking to view their posts
 * [] set size of the video image by dragging
 * [] see if you can apply cloudinary
+* [] Check if you need to enable an event listener for the resizing http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_size
 
 
 

@@ -99,6 +99,8 @@
       <div class="divButtonSeparator">
         <button id="buttonInsertImage" title="insert image"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
         <input type="file" id="inputInsertImage" name="" value="">
+        <button id="buttonInsertCloudImage" title="insert image"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+        <form class="cloudinary_fileupload" id="formImageUploadCloudinary"></form>
         <button id="buttonInsertOnlineImage" title="insert online image"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
         <button id="buttonInsertVideo" title="insert video"><i class="fa fa-file-video-o" aria-hidden="true"></i></button>
         <input type="file" id="inputInsertVideo" name="" value="">
@@ -113,7 +115,41 @@
         <button id="buttonClearColorSettings" title="clear color settings"><i class="fa fa-eraser" aria-hidden="true"></i></button>
       </div>
 
+      <!-- <div class="progress_bar">
+
+      </div> -->
+      <!-- <div class=".progressbar">
+
+      </div> -->
+
+
+
+
+
+      <!-- <div class="divButtonSeparator">
+        <form id="formCloudinaryImage" class="" action="/newarticle/newimage" method="post">
+          <label for="">
+            <input type="file" id="inputCloudinaryImage" name="inputCloudinaryImage" value="">
+          </label>
+          <button type="submit" name="button" title="Submit your image" >Submit</button>
+        </form>
+      </div> -->
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <form class="" id="formNewArticle" action="/articles" method="post">
       <!-- <input type="hidden" name="article_id" value="{{id}}"> CONFIRM IF YOU WANT THESE INFORMATION IN THIS AREA
@@ -141,6 +177,17 @@
     </form>
   </article>
 </section>
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.cloudinary.js"></script>
+
+
+<script type="text/javascript" src="/javascripts/load-image.all.min.js"></script>
+<script type="text/javascript" src="/javascripts/canvas-to-blob.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.fileupload-image.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.fileupload-process.js"></script>
 
 
 <script type="text/javascript" src="/javascripts/wysiwyg.js"></script>

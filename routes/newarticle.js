@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
+module.exports = router;
+
 //THIS IS IN THE INDEX.JS CURRENTLY
 // REDIRECT TO NEW POSTING PAGE
 // router.get('/newarticle', (req, res, next) => {

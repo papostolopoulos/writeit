@@ -163,7 +163,7 @@ router.get('/', function(req, res, next) {
   // console.log(req.cookies); //first part of the cookie is the session id. Second part is the signature that signs the authentication to the server
   console.log('--------------');
   console.log('--------------');
-  console.log('--------------');
+  console.log('HOMEPAGE DISPLAY (ROUTER.GET('/'))');
   console.log("req.session: ");
   console.log(req.session);
   console.log("req.session.user: ");

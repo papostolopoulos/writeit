@@ -1,4 +1,6 @@
-// window.onload = () => {
+
+$.cloudinary.config({ cloud_name: 'writeit', api_key: '957122638812785'});
+
 
 
 //VARIABLE DECLARATIONS
@@ -7,19 +9,20 @@ let buttonBold = document.getElementById("buttonBold");
 let buttonItalic = document.getElementById("buttonItalic");
 let buttonUnderline = document.getElementById("buttonUnderline");
 let buttonStrikethrough = document.getElementById("buttonStrikethrough");
-let buttonJustifyLeft = document.getElementById("buttonJustifyLeft");
-let buttonJustifyCenter = document.getElementById("buttonJustifyCenter");
-let buttonJustifyRight = document.getElementById("buttonJustifyRight");
-let buttonJustifyFull = document.getElementById("buttonJustifyFull");
-let buttonCut = document.getElementById("buttonCut");
-let buttonCopy = document.getElementById("buttonCopy");
-let buttonPaste = document.getElementById("buttonPaste");
-let buttonIndent = document.getElementById("buttonIndent");
-let buttonOutdent = document.getElementById("buttonOutdent");
 let buttonSubscript = document.getElementById("buttonSubscript");
 let buttonSuperscript = document.getElementById("buttonSuperscript");
 let buttonUndo = document.getElementById("buttonUndo");
 let buttonRedo = document.getElementById("buttonRedo");
+let buttonCut = document.getElementById("buttonCut");
+let buttonCopy = document.getElementById("buttonCopy");
+let buttonPaste = document.getElementById("buttonPaste");
+let buttonSelectAll = document.getElementById("buttonSelectAll");
+let buttonJustifyLeft = document.getElementById("buttonJustifyLeft");
+let buttonJustifyCenter = document.getElementById("buttonJustifyCenter");
+let buttonJustifyRight = document.getElementById("buttonJustifyRight");
+let buttonJustifyFull = document.getElementById("buttonJustifyFull");
+let buttonIndent = document.getElementById("buttonIndent");
+let buttonOutdent = document.getElementById("buttonOutdent");
 let buttonInsertUnorderedList = document.getElementById("buttonInsertUnorderedList");
 let buttonInsertOrderedList = document.getElementById("buttonInsertOrderedList");
 let buttonInsertParagraph = document.getElementById("buttonInsertParagraph");
@@ -44,7 +47,11 @@ let inputInsertImage = document.getElementById("inputInsertImage")
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
 let buttonInsertVideo = document.getElementById("buttonInsertVideo");
 let inputInsertVideo = document.getElementById("inputInsertVideo");
-let buttonSelectAll = document.getElementById("buttonSelectAll");
+let buttonInsertCloudImage = document.getElementById("buttonInsertCloudImage");
+let formImageUploadCloudinary = document.getElementById("formImageUploadCloudinary");
+let cloudinary_fileupload = document.getElementsByClassName("cloudinary_fileupload");
+
+
 
 let formNewArticle = document.getElementById("formNewArticle");
 let buttonSubmitNewArticle = document.getElementById("buttonSubmitNewArticle");
@@ -98,6 +105,8 @@ buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImag
 buttonInsertVideo.addEventListener("click", ()=>{clickInputInsert(inputInsertVideo)});
 inputInsertVideo.addEventListener("change", ()=>{findPositionAndUploadVideo(inputInsertVideo)});
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
+buttonInsertCloudImage.addEventListener("click", ()=>{clickInputInsert(cloudinary_fileupload[1])})
+
 
 buttonSubmitNewArticle.addEventListener("mouseover", ()=>{registerIframeInfo()});
 inputNewArticleTitleVisible.addEventListener("keyup", inputUpdateTitle);
@@ -401,92 +410,89 @@ function findPositionAndUploadVideo(source) {
 }
 
 
+$('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
+{ cloud_name: 'writeit' })
+.bind('fileuploadprogress', function(e, data) {
+  $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+})
+.bind('cloudinarydone', function(e, data) {
+  console.log(e);
+  console.log(data.result);
+    console.log(data.result.path);
+    console.log("https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg");
+
+    let newImageSource = "https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg"
+    let newImage = document.createElement("img");
+    newImage.src = newImageSource;
+    richTextField.contentDocument.body.appendChild(newImage);
+  // $('.thumbnails')
+  // .append($.cloudinary
+  //   .image(data.result.public_id, {
+  //     format: 'jpg',
+  //     width: 640,
+  //     quality: 'auto',
+  //     crop: 'thumb',
+  //     gravity: 'face',
+  //     effect: 'saturation:50'
+  //   })
+  // )
+})
+);
 
 
-// //UPLOAD AND RENDER VIDEO FROM HARD DRIVE
-// function previewFile(source) {
-//   let newVideo = document.createElement("video");
-//   let newVideoSource = document.createElement("source");
-//
-//   newVideo.setAttribute("controls", "controls");
-//   newVideo.setAttribute("allowfullscreen", "allowfullscreen");
-//
-//   newVideo.style.width = "640px";
-//   newVideo.appendChild(newVideoSource);
-//
-//   var file = source.files[0];
-//   var reader = new FileReader(); //reads contents of files in the hard drive
-//
-//   reader.addEventListener("load", (event)=>{
-//     newVideoSource.src = reader.result;
-//     console.log("inside event listener");
-//     console.log(reader.result === event.target.result);
-//
-//     var dataURL = event.target.result;
-//   var mimeType = dataURL.split(",")[0].split(":")[1].split(";")[0];
-//   newVideoSource.setAttribute("type", mimeType);
-//   console.log(newVideoSource.getAttribute("type"));
-//
-//     console.log(newVideo);
-//     // richTextField.contentDocument.body.appendChild(newVideo);
-//   }, false);
-//
-//   // reader.addEventListener("error", (event)=>{
-//   //   console.log(event);
-//   // });
-//   //
-//   // reader.addEventListener("abort", (event)=>{
-//   //   console.log(event);
-//   // });
-//
-//
-//
-//   if (file) {
-//     reader.readAsDataURL(file); //read contents of file and transform into base 64
-//   }
-//   console.log(newVideo);
-//
-//
-//   //Find the right position for image to be inserted
-//   let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
-//   let iframeChildren = richTextField.contentDocument.body.children;
-//
-//   if (richTextField.contentDocument.body.innerHTML === "") { //If the iframe is empty
-//     richTextField.contentDocument.body.appendChild(newVideo);
-//     richTextField.contentDocument.body.append(" ");
-//   }
-//   else if (richTextField.contentDocument.body.innerHTML !== "" && richTextField.contentDocument.body.children.length !== 0) {
-//     console.log("Got in the else statement");
-//     richTextField.contentDocument.body.appendChild(newVideo);
-//     richTextField.contentDocument.body.append("");
-//   }
-//   else {
-//     for (let i = 0; i < iframeChildren.length; i++) {
-//       console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
-//       console.log("CursorText: " + cursorText.trim());
-//       if (iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim() === cursorText.trim()) {
-//         console.log("IN THE FIRST IF STATEMENT. TEXT OF IFRAME IN ENDCONTAINERDATA");
-//         // richTextField.contentDocument.body.insertBefore(newVideo, iframeChildren[i]);
-//         iframeChildren[i].appendChild(newVideo);
-//         return;
-//       }
-//     }
-//   }
-//
-//
-//
-//   richTextField.contentDocument.body.focus();
-// }
+//UPLOAD IMAGES
+function cloudinaryUpload(dataFormat) {
+  $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
+  { cloud_name: 'writeit' })
+  .bind('fileuploadprogress', function(e, data) {
+    $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+  })
+  .bind('cloudinarydone', function(e, data) {
+    console.log(e);
+    console.log(data.result);
+    $('.thumbnails')
+    .append($.cloudinary
+      .image(data.result.public_id, {
+        format: 'jpg',
+        width: 150,
+        height: 100,
+        crop: 'thumb',
+        gravity: 'face',
+        effect: 'saturation:50'
+      })
+    )
+  })
+  );
+}
 
+//WORKING
+// $('.formImageUploadCloudinary').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
+// { cloud_name: 'writeit' })
+// .bind('fileuploadprogress', function(e, data) {
+//   $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+// })
+// .bind('cloudinarydone', function(e, data) {
+//   console.log(e);
+//   console.log(data.result);
+//   $('.thumbnails')
+//   .append($.cloudinary
+//     .image(data.result.public_id, {
+//       format: 'jpg',
+//       width: 150,
+//       height: 100,
+//       crop: 'thumb',
+//       gravity: 'face',
+//       effect: 'saturation:50'
+//     })
+//   )
+// })
+// );
 
 
 
 
 //FUNCTION CALLS
 enableEditMode();
-
-
-// } //End of window.onload
 
 
 

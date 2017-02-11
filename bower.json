@@ -1,0 +1,22 @@
+{
+  "name": "g35-server-side-review",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Paraskevas Apostolopoulos <papostolopoulos@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/papostolopoulos/g35_server_side_review",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cloudinary": "^2.1.9",
+    "jquery": "^3.1.1"
+  }
+}

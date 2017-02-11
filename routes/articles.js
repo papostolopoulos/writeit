@@ -315,9 +315,9 @@ router.delete('/:username/:id', function(req, res, next) {
       res.redirect('/articles/' + req.params.username)
     });
   }
+});
 
 
-})
 
 
 
