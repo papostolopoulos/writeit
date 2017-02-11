@@ -410,6 +410,8 @@ function findPositionAndUploadVideo(source) {
 }
 
 
+
+//UPLOAD IMAGES
 $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
 { cloud_name: 'writeit' })
 .bind('fileuploadprogress', function(e, data) {
@@ -424,46 +426,59 @@ $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
     let newImageSource = "https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg"
     let newImage = document.createElement("img");
     newImage.src = newImageSource;
-    richTextField.contentDocument.body.appendChild(newImage);
-  // $('.thumbnails')
-  // .append($.cloudinary
-  //   .image(data.result.public_id, {
-  //     format: 'jpg',
-  //     width: 640,
-  //     quality: 'auto',
-  //     crop: 'thumb',
-  //     gravity: 'face',
-  //     effect: 'saturation:50'
-  //   })
-  // )
+    newImage.className = "newImage";
+    execCmdPrompt("insertImage", false, newImageSource);
 })
 );
 
 
-//UPLOAD IMAGES
-function cloudinaryUpload(dataFormat) {
-  $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
-  { cloud_name: 'writeit' })
-  .bind('fileuploadprogress', function(e, data) {
-    $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-  })
-  .bind('cloudinarydone', function(e, data) {
-    console.log(e);
-    console.log(data.result);
-    $('.thumbnails')
-    .append($.cloudinary
-      .image(data.result.public_id, {
-        format: 'jpg',
-        width: 150,
-        height: 100,
-        crop: 'thumb',
-        gravity: 'face',
-        effect: 'saturation:50'
-      })
-    )
-  })
-  );
+function findPositionAndRender(mediaFile) {
+
+  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
+  let iframeChildren = richTextField.contentDocument.body.children;
+
+  if (richTextField.contentDocument.body.textContent === "") { //If the iframe is empty
+    console.log("first if statement");
+      richTextField.contentDocument.body.appendChild(mediaFile);
+      // richTextField.contentDocument.body.append(".");
+      richTextField.contentDocument.body.focus();
+  }
+  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length === 0) {//If the iframe has text but no html children
+      richTextField.contentDocument.body.appendChild(mediaFile);
+      richTextField.contentDocument.body.append(".");
+      richTextField.contentDocument.body.focus();
+  }
+  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length !== 0) {//The iframe has both content and html childrean
+    for (let i = 0; i < iframeChildren.length; i++) {
+      console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
+      console.log(cursorText);
+      console.log(iframeChildren[i].textContent);
+      if (cursorText === undefined && iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === "") {
+        console.log("IN THE IF OF THE ELSE");
+          iframeChildren[i].appendChild(mediaFile);
+          richTextField.contentDocument.body.append(".");
+          richTextField.contentDocument.body.focus();
+        return;
+      }
+      else if (iframeChildren[i].textContent === cursorText) {
+        iframeChildren[i].appendChild(mediaFile);
+        richTextField.contentDocument.body.append(".");
+        richTextField.contentDocument.body.focus();
+      }
+      else if (iframeChildren[i].innerHTML === richTextField.contentDocument.getSelection().getRangeAt(0).endContainer) { //.replace(/&nbsp;/g, "").trim()
+        console.log("IN THE ELSE IF OF THE ELSE");
+        // richTextField.contentDocument.body.insertBefore(mediaFile, iframeChildren[i]);
+          iframeChildren[i].appendChild(mediaFile);
+          richTextField.contentDocument.body.append(".");
+          richTextField.contentDocument.body.focus();
+        return;
+      }
+    }
+  }
 }
+
+
+
 
 //WORKING
 // $('.formImageUploadCloudinary').append($.cloudinary.unsigned_upload_tag("z2mez0vj",

@@ -295,6 +295,17 @@
   	text-align: center;
   }
 
+  .iframeArticles {
+    max-width: 320px;
+    width: 320px;
+    border: 2px solid black;
+  }
+
+  .uploadedImages {
+    max-width: 320px;
+    width: 320px
+  }
+
 
 
 
