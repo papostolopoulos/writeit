@@ -346,7 +346,7 @@ footer a:hover {
 
 }
 
-.newImage, .newVideo {
+img {
   width: 640px;
   resize: both;
   overflow: auto;

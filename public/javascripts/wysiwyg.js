@@ -42,8 +42,6 @@ let inputFontColor = document.getElementById("inputFontColor");
 let buttonHighlightColor = document.getElementById("buttonHighlightColor");
 let inputHighlightColor = document.getElementById("inputHighlightColor");
 let buttonClearColorSettings = document.getElementById("buttonClearColorSettings");
-let buttonInsertImage = document.getElementById("buttonInsertImage");
-let inputInsertImage = document.getElementById("inputInsertImage")
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
 let buttonInsertVideo = document.getElementById("buttonInsertVideo");
 let inputInsertVideo = document.getElementById("inputInsertVideo");
@@ -99,8 +97,6 @@ inputFontColor.addEventListener("change", ()=>{execCmd("foreColor", false, input
 buttonHighlightColor.addEventListener("click", ()=>{clickInputInsert(inputHighlightColor)});
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
 buttonClearColorSettings.addEventListener("click", clearColorSettings);
-buttonInsertImage.addEventListener("click", ()=>{clickInputInsert(inputInsertImage)});
-inputInsertImage.addEventListener("change", ()=>{findPositionAndUploadImage(inputInsertImage)}) //
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
 buttonInsertVideo.addEventListener("click", ()=>{clickInputInsert(inputInsertVideo)});
 inputInsertVideo.addEventListener("change", ()=>{findPositionAndUploadVideo(inputInsertVideo)});
@@ -117,14 +113,13 @@ inputNewArticleTitleVisible.addEventListener("keyup", inputUpdateTitle);
 
 
 
-
-
 // ----------FUNCTION DECLARATIONS=========================
 //ENABLE EDIT MODE FOR THE IFRAME AREA
 function enableEditMode() {
   richTextField.contentDocument.designMode = "On";
   richTextField.contentDocument.body.focus();
 }
+
 
 //EXECCOMMAND - ALLOWS US TO RUN COMMANDS TO MANIPULATE THE CONTENTS OF THE EDITABLE REGION
 function execCmd(command, bool, value) {
@@ -134,7 +129,8 @@ function execCmd(command, bool, value) {
   richTextField.contentDocument.body.focus();
 }
 
-//EXECCOMMAND FOR IMAGE
+
+//EXECCOMMAND FOR PROMPT USER INFO
 function execCmdPrompt(command, bool, value) {
   if (value !== null) {
     event.preventDefault();
@@ -142,6 +138,8 @@ function execCmdPrompt(command, bool, value) {
     richTextField.contentDocument.body.focus();
   }
 }
+
+
 
 //SWITCH FROM TEXT EDITOR TO RAW HTML
 let showingSourceCode = false; //A variable that defines if the view should be turned on or off
@@ -196,9 +194,6 @@ function clearColorSettings() {
   console.log(inputFontColor);
   execCmd("foreColor", false, "#000000");
   execCmd("hiliteColor", false, "#ffffff");
-  // inputFontColor.value = "#000000";
-  // // inputBackgroundColor.value = "#ffffff";
-  // inputHighlightColor.value = "#ffffff";
   richTextField.contentDocument.body.focus();
 }
 
@@ -260,68 +255,6 @@ function previewImageFile(source) {
   richTextField.contentDocument.body.focus();
 }
 
-
-
-
-
-
-
-function findPositionAndUploadImage(source) {
-
-  let newImage = document.createElement("img");
-  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
-  let iframeChildren = richTextField.contentDocument.body.children;
-
-  newImage.style.width = "640px";
-  newImage.className = "newImage";
-
-  if (richTextField.contentDocument.body.textContent === "") { //If the iframe is empty
-    console.log("first if statement");
-    previewFile(source, newImage);
-    setTimeout(function(){
-      richTextField.contentDocument.body.appendChild(newImage);
-      richTextField.contentDocument.body.append(".");
-      richTextField.contentDocument.body.focus();
-    }, 1000);
-  }
-  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length === 0) {//If the iframe has text but no html children
-    previewFile(source, newImage);
-    setTimeout(function(){
-      richTextField.contentDocument.body.appendChild(newImage);
-      richTextField.contentDocument.body.append(".");
-      richTextField.contentDocument.body.focus();
-    }, 1000);
-  }
-  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length !== 0) {//The iframe has both content and html childrean
-    for (let i = 0; i < iframeChildren.length; i++) {
-      console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
-      console.log(cursorText);
-      console.log(iframeChildren[i].textContent);
-      // console.log("CursorText: " + cursorText.trim());
-      if (cursorText === undefined && iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === "") {
-        console.log("IN THE IF OF THE ELSE");
-        previewFile(source, newImage);
-        setTimeout(function(){
-          iframeChildren[i].appendChild(newImage);
-          richTextField.contentDocument.body.append(".");
-          richTextField.contentDocument.body.focus();
-        }, 1000);
-        return;
-      }
-      else if (iframeChildren[i].innerHTML === richTextField.contentDocument.getSelection().getRangeAt(0).endContainer) { //.replace(/&nbsp;/g, "").trim()
-        console.log("IN THE ELSE IF OF THE ELSE");
-        // richTextField.contentDocument.body.insertBefore(newImage, iframeChildren[i]);
-        previewFile(source, newImage);
-        setTimeout(function(){
-          iframeChildren[i].appendChild(newImage);
-          richTextField.contentDocument.body.append(".");
-          richTextField.contentDocument.body.focus();
-        }, 1000);
-        return;
-      }
-    }
-  }
-}
 
 
 //UPLOAD AND RENDER VIDEO FROM HARD DRIVE
@@ -411,71 +344,33 @@ function findPositionAndUploadVideo(source) {
 
 
 
-//UPLOAD IMAGES
+//UPLOAD IMAGES FROM HARD DRIVE
 $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
 { cloud_name: 'writeit' })
-.bind('fileuploadprogress', function(e, data) {
-  $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-})
-.bind('cloudinarydone', function(e, data) {
-  console.log(e);
-  console.log(data.result);
-    console.log(data.result.path);
-    console.log("https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg");
+  .bind('fileuploadprogress', function(e, data) {
+    $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+  })
+  .bind('cloudinarydone', function(e, data) {
+    console.log(e);
+    console.log(data.result);
+      console.log(data.result.path);
+      console.log(data.result.path.slice(data.result.path.length - 3));
 
-    let newImageSource = "https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg"
-    let newImage = document.createElement("img");
-    newImage.src = newImageSource;
-    newImage.className = "newImage";
-    execCmdPrompt("insertImage", false, newImageSource);
-})
+      if (data.result.path.slice(data.result.path.length - 3) === "jpg" || data.result.path.slice(data.result.path.length - 3) === "png" || data.result.path.slice(data.result.path.length - 3) === "bmp") {
+        let newImageSource = "https://res.cloudinary.com/writeit/image/upload/w_640,q_80,f_auto/" + data.result.path.slice(0, data.result.path.length - 3) + "jpg";
+        let newImage = document.createElement("img");
+        newImage.src = newImageSource;
+        newImage.className = "newImage";
+        execCmdPrompt("insertImage", false, newImageSource);
+      }
+      else if (data.result.path.slice(data.result.path.length - 3) === "mp4" || data.result.path.slice(data.result.path.length - 3) === "mov") {
+        let newVideoSource = "https://res.cloudinary.com/writeit/video/upload/w_640,q_80/" + data.result.path.slice(0, data.result.path.length - 3);
+        console.log("https://res.cloudinary.com/writeit/video/upload/w_640,q_80/" + data.result.path.slice(0, data.result.path.length - 3) + "mp4");
+        let htmlVideoTag = "<video poster=" + newVideoSource + "jpg controls><source src=\"" + newVideoSource + "mp4\"/></video>"
+        execCmdPrompt("insertHTML", false, htmlVideoTag);
+      }
+  })
 );
-
-
-function findPositionAndRender(mediaFile) {
-
-  let cursorText = richTextField.contentDocument.getSelection().getRangeAt(0).endContainer.data; //returns a Selection object representing the text currently selected in the document.
-  let iframeChildren = richTextField.contentDocument.body.children;
-
-  if (richTextField.contentDocument.body.textContent === "") { //If the iframe is empty
-    console.log("first if statement");
-      richTextField.contentDocument.body.appendChild(mediaFile);
-      // richTextField.contentDocument.body.append(".");
-      richTextField.contentDocument.body.focus();
-  }
-  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length === 0) {//If the iframe has text but no html children
-      richTextField.contentDocument.body.appendChild(mediaFile);
-      richTextField.contentDocument.body.append(".");
-      richTextField.contentDocument.body.focus();
-  }
-  else if (richTextField.contentDocument.body.textContent !== "" && richTextField.contentDocument.body.children.length !== 0) {//The iframe has both content and html childrean
-    for (let i = 0; i < iframeChildren.length; i++) {
-      console.log("innerHTML for position" + i + ":" + iframeChildren[i].innerHTML.replace(/&nbsp;/g, "").trim());
-      console.log(cursorText);
-      console.log(iframeChildren[i].textContent);
-      if (cursorText === undefined && iframeChildren[i].textContent.replace(/&nbsp;/g, "").trim() === "") {
-        console.log("IN THE IF OF THE ELSE");
-          iframeChildren[i].appendChild(mediaFile);
-          richTextField.contentDocument.body.append(".");
-          richTextField.contentDocument.body.focus();
-        return;
-      }
-      else if (iframeChildren[i].textContent === cursorText) {
-        iframeChildren[i].appendChild(mediaFile);
-        richTextField.contentDocument.body.append(".");
-        richTextField.contentDocument.body.focus();
-      }
-      else if (iframeChildren[i].innerHTML === richTextField.contentDocument.getSelection().getRangeAt(0).endContainer) { //.replace(/&nbsp;/g, "").trim()
-        console.log("IN THE ELSE IF OF THE ELSE");
-        // richTextField.contentDocument.body.insertBefore(mediaFile, iframeChildren[i]);
-          iframeChildren[i].appendChild(mediaFile);
-          richTextField.contentDocument.body.append(".");
-          richTextField.contentDocument.body.focus();
-        return;
-      }
-    }
-  }
-}
 
 
 
