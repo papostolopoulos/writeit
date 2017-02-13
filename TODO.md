@@ -186,6 +186,8 @@
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
 * [] Create the option to the random user to view information of the other user that is interested about
 * [] Check if you need to enable an event listener for the resizing http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_size
+* [] Fix links css in about page and for mobile
+* [] see if you can resize the images in mobile - see cloudinary blog for that http://cloudinary.com/blog/how_to_automatically_create_images_for_responsive_design 
 
 
 
