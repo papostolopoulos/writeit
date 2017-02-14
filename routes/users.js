@@ -60,6 +60,7 @@ router.get('/:username', function(req, res, next) {
 
         res.render('useraccount', {
           username: user.username,
+          id: user.id,
           user: user.username,
           email: user.email,
           password: user.password
@@ -84,21 +85,21 @@ router.put('/:username', function (req, res, next) {
 
     // check in validation of user's entries. See function that you need to build in index page
     let userInfoUpdate = {};
-
+    //Username entry
     if (req.body.username !== "" && req.body.username !== req.body.existingUsername) {
       userInfoUpdate.username = req.body.username;
     }
     else {
       userInfoUpdate.username = req.body.existingUsername;
     }
-
+    //email entry
     if (req.body.email !== "" && req.body.email !== req.body.existingEmail) {
       userInfoUpdate.email = req.body.email;
     }
     else {
       userInfoUpdate.email = req.body.existingEmail;
     }
-
+    //password entry
     if (req.body.password === "" && req.body.newPassword !== "") { //The user did not enter his current password
       res.render('error', {
         user: req.session.user,
@@ -147,6 +148,35 @@ router.put('/:username', function (req, res, next) {
       else if (req.body.password !== "" && req.body.newPassword === "") {//The user entered his existing password but did not enter a new password
         if (bcrypt.compareSync(req.body.password, user.password) === true) {//current password matches the password in the database
 
+          var hashedPassword = new Promise((resolve, reject) => {
+            resolve(generatePassword(req.body.password));
+          });
+
+          hashedPassword
+          .then((pwd) =>{
+            userInfoUpdate.password = pwd;
+            console.log("password is: ", pwd);
+            console.log(userInfoUpdate);
+            knex('users')
+            .select()
+            .where({username: req.session.user})
+            .update({
+              username: userInfoUpdate.username,
+              email: userInfoUpdate.email,
+              password: userInfoUpdate.password
+            })
+            .then(()=>{
+              console.log(userInfoUpdate);
+              req.session.user = userInfoUpdate.username;
+              req.session.cookie.maxAge = 10 * 24 * 60 * 60 //10 days long
+              // req.session.cookie.httpOnly = true;
+              res.render('updatesuccessful', {
+                user: userInfoUpdate.username,
+                username: userInfoUpdate.username,
+                email: userInfoUpdate.email
+              })
+            })
+          })
         }
       }
       else { //current password entry does not match the password in the database
@@ -160,9 +190,27 @@ router.put('/:username', function (req, res, next) {
         });
       }
     }
-
   })
 });
+
+
+//DELETE USER ACCOUNT AND POSTINGS
+router.delete('/:username', function (req, res, next) {
+  console.log(req.session);
+  knex('articles')
+  .where('user_id', req.body.id)
+  .del()
+  .then(() => {
+    knex('users')
+    .where('username', req.body.username)
+    .del()
+    .then(()=>{
+      res.render('deletionsuccessful', {
+        user: "visitor"
+      })
+    })
+  })
+})
 
 
 //FUNCTIONS

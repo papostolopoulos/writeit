@@ -64,11 +64,32 @@
         </table>
       </form>
 
-      <h3>Delete your account</h3>
-      <form class="loginPageForms" id="formDeleteUserAccount" action="/users/{{user}}?_method=DELETE" method="post">
-        <button type="button" name="buttonDeleteUserAccount" id="buttonDeleteUserAccount">deleteIt</button>
-      </form>
+      <div id="divDeleteAccount">
+        <h3>Delete your account</h3>
+        <button type="submit" name="button" id="buttonDeleteUserAccountConfirm" onclick="confirmAccountDeletion()">deleteIt</button>
+        <form class="loginPageForms" id="formDeleteUserAccount" action="/users/{{user}}?_method=DELETE" method="post">
+          <input type="text" name="username" value="{{username}}">
+          <input type="text" name="id" value="{{id}}">
+          <button type="submit" name="buttonDeleteUserAccount" id="buttonDeleteUserAccount">deleteIt</button>
+        </form>
+      </div>
+
 
   </div>
   </article>
 </section>
+
+<script type="text/javascript">
+  function confirmAccountDeletion() {
+    if (confirm("Are you sure you want to delete your account? \n This action is not reversible and it will delete all of your posts and your user account information.") === true) {
+      clickInputInsert(buttonDeleteUserAccount);
+    }
+
+  }
+
+  //ACTIVATE DELETE ACCOUNT SUBMIT BUTTON BY CLICKING AT DIFFERENT BUTTONS
+  function clickInputInsert(inputTag){
+    inputTag.click();
+  }
+
+</script>

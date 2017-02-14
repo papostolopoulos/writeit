@@ -610,6 +610,11 @@ a[type="button"]:hover {
 }
 
 #formDeleteUserAccount {
+  display: none;
+  text-align: center;
+}
+
+#divDeleteAccount {
   text-align: center;
 }
 

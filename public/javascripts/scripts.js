@@ -1,7 +1,4 @@
-// $.cloudinary.config({ cloud_name: 'writeit', api_key: '957122638812785'});
-//
-// $(function() {
-//   if($.fn.cloudinary_fileupload !== undefined) {
-//     $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-//   }
-// });
+console.log("In the scripts file");
+let imagesTags = document.getElementsByTagName('img');
+let iFrameArticles = document.getElementsByClassName("iFrameArticles")
+console.log(iFrameArticles[0].contentDocument.body.childNodes);

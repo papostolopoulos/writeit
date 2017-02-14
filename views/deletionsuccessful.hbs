@@ -1,0 +1,55 @@
+<section class="homepageSections">
+  <article class="articleArea">
+    <h3>Account deleted</h3>
+    <p>Your have sucessfuly deleted your account.</p>
+    <h3>Rest assured, Parker will never know, I think...</h3>
+  </article>
+
+  <!-- SIGN UP AREA -->
+  <div id="signupAreaDiv">
+    <h3 id="signupHeading">Sign up to create a new account.</h3>
+    <form id="signupForm" class="loginPageForms" action="/users" method="post">
+      <table>
+        <tbody>
+          <tr>
+            <td>User name:</td>
+            <td>
+              <label for="signupUserName">
+                <input type="text" name="username" id="signupUserName" value="" placeholder="Type your user name" required>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Email:</td>
+            <td>
+              <label for="signupEmail">
+                <input type="email" name="email" value="" id="signupEmail" placeholder="Type your email" required>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Password:</td>
+            <td>
+              <label for="signupPassword">
+                <input type="password" name="password" value="" id="signupPassword" placeholder="Type your password" required>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <label for="signupSubmit">
+                <button type="submit" name="signupButton" id="signupButton">Sign up</button>
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+
+</section>
