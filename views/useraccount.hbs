@@ -1,8 +1,74 @@
-<main>
-  This is the useraccount page.
+<section class="homepageSections">
 
-<br>
-  username: {{username}} <br>
-  email: {{email}}
+  <article class="articleArea">
+    <h1>User account</h1>
 
-</main>
+    username: {{username}} <br>
+    email: {{email}}
+    <div id="loginAreaDiv">
+      <h3>Update your information</h3>
+      <form class="loginPageForms" id="formUpdateUserInfo" action="/users/{{user}}?_method=PUT" method="post">
+        <input type="hidden" name="existingUsername" value="{{username}}">
+        <input type="hidden" name="existingEmail" value="{{email}}">
+        <input type="hidden" name="existingPassword" value="{{password}}">
+
+        <table>
+          <tbody>
+            <tr>
+              <td>Update username:</td>
+              <td>
+                <input type="text" name="username" placeholder="current: {{username}}">
+              </td>
+            </tr>
+
+            <tr>
+              <td>Update email:</td>
+              <td>
+                <input type="email" name="email" placeholder="current: {{email}}">
+              </td>
+            </tr>
+
+            <tr>
+              <td>Update password:</td>
+              <td>&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td>Current password:</td>
+              <td>
+                <input type="password" name="password" placeholder="your old password">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                New password:
+              </td>
+              <td>
+                <input type="password" name="newPassword" placeholder="your new password">
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <div id="divNewArticleSubmitButtons">
+                  <label for="newArticleSubmit">
+                    <button type="submit" name="buttonEditUserInfo" id="buttonEditUserInfo" title="Update your user information">updateIt</button>
+                  </label>
+                  <button type="button" name="button" id="buttonCancelFormAction" onclick="history.go(-1);return true;" title="Cancel editing your user information">forgetIt</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+      <h3>Delete your account</h3>
+      <form class="loginPageForms" id="formDeleteUserAccount" action="/users/{{user}}?_method=DELETE" method="post">
+        <button type="button" name="buttonDeleteUserAccount" id="buttonDeleteUserAccount">deleteIt</button>
+      </form>
+
+  </div>
+  </article>
+</section>

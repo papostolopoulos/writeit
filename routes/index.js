@@ -32,7 +32,7 @@ router.post('/users', (req, res, next) => {
     }
   });
 
-  var hashedPassword = new Promise((resolve, rejesssct) => {
+  var hashedPassword = new Promise((resolve, reject) => {
       resolve(generatePassword(req.body.password));
   });
 
@@ -113,15 +113,6 @@ router.post('/users/:username', (req, res, next) => {
           console.log("req.session.user: ");
           console.log(req.session.user);
           console.log(req.session);
-          // let user = req.session.user;
-          //req.cookies
-          // res.cookie('cookie', 'monster', {
-          //   domain: '/', //Domain name for cookie
-          //   path: '/', //Path for cookie
-          //   maxAge: 10 * 24 * 60 *60, //Days, hours, minutes, seconds Another example: new Date(Date.now() + 900000
-          //   httpOnly: true //flags if the cookie should only be accessed from the server
-          // }
-          // ); //{ maxAge: 604800, httpOnly: true }
           res.redirect(`/articles/${loginUser.username}`)
         }
         else {

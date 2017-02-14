@@ -43,8 +43,7 @@ let buttonHighlightColor = document.getElementById("buttonHighlightColor");
 let inputHighlightColor = document.getElementById("inputHighlightColor");
 let buttonClearColorSettings = document.getElementById("buttonClearColorSettings");
 let buttonInsertOnlineImage = document.getElementById('buttonInsertOnlineImage');
-let buttonInsertVideo = document.getElementById("buttonInsertVideo");
-let inputInsertVideo = document.getElementById("inputInsertVideo");
+let buttonInsertOnlineVideo = document.getElementById("buttonInsertOnlineVideo");
 let buttonInsertCloudImage = document.getElementById("buttonInsertCloudImage");
 let formImageUploadCloudinary = document.getElementById("formImageUploadCloudinary");
 let cloudinary_fileupload = document.getElementsByClassName("cloudinary_fileupload");
@@ -98,8 +97,7 @@ buttonHighlightColor.addEventListener("click", ()=>{clickInputInsert(inputHighli
 inputHighlightColor.addEventListener("change", ()=>{execCmd("hiliteColor", false, inputHighlightColor.value)});
 buttonClearColorSettings.addEventListener("click", clearColorSettings);
 buttonInsertOnlineImage.addEventListener("click", ()=>{execCmdPrompt("insertImage", false, prompt('Please enter the image url', 'http://'))});
-buttonInsertVideo.addEventListener("click", ()=>{clickInputInsert(inputInsertVideo)});
-inputInsertVideo.addEventListener("change", ()=>{findPositionAndUploadVideo(inputInsertVideo)});
+buttonInsertOnlineVideo.addEventListener("click", ()=>{uploadOnlineVideo(prompt('Please enter the video url', 'http://'))})
 buttonSelectAll.addEventListener("click", ()=>{execCmd("selectAll")});
 buttonInsertCloudImage.addEventListener("click", ()=>{clickInputInsert(cloudinary_fileupload[1])})
 
@@ -344,7 +342,7 @@ function findPositionAndUploadVideo(source) {
 
 
 
-//UPLOAD IMAGES FROM HARD DRIVE
+//UPLOAD IMAGES OR VIDEOS FROM HARD DRIVE
 $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
 { cloud_name: 'writeit' })
   .bind('fileuploadprogress', function(e, data) {
@@ -381,30 +379,11 @@ $('.cloudinary_fileupload').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
 );
 
 
-
-
-//WORKING
-// $('.formImageUploadCloudinary').append($.cloudinary.unsigned_upload_tag("z2mez0vj",
-// { cloud_name: 'writeit' })
-// .bind('fileuploadprogress', function(e, data) {
-//   $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-// })
-// .bind('cloudinarydone', function(e, data) {
-//   console.log(e);
-//   console.log(data.result);
-//   $('.thumbnails')
-//   .append($.cloudinary
-//     .image(data.result.public_id, {
-//       format: 'jpg',
-//       width: 150,
-//       height: 100,
-//       crop: 'thumb',
-//       gravity: 'face',
-//       effect: 'saturation:50'
-//     })
-//   )
-// })
-// );
+// UPLOAD ONLINE VIDEOS
+  function uploadOnlineVideo(url){
+    var uploadParameter = "<iframe width=\"640\" height=\"360\" src=\"" + url + "\" frameborder=\"0\" allowfullscreen></iframe>"
+    execCmdPrompt("insertHTML", false, uploadParameter)
+  }
 
 
 

@@ -179,15 +179,18 @@
 * [X] Auto adjust iframe height
 * [X] view list of users, have the option of clicking to view their posts
 * [X] see if you can apply cloudinary
+* [X] Create the option to the random user to view information of the other user that is interested about
 * [] Require the password to have a specific length or set of characters (at index.js)
 * [] figure out clipboard and paste options
 * [] Validate sign up info (at index.js see function named validateSignupInfo)
 * [] be able to set the modify the width and height of image
 * [] Create an option of viewing a limited number of posts in the articles page and then expand it as the user is clicking on <a>more</a>
-* [] Create the option to the random user to view information of the other user that is interested about
 * [] Check if you need to enable an event listener for the resizing http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_size
 * [] Fix links css in about page and for mobile
-* [] see if you can resize the images in mobile - see cloudinary blog for that http://cloudinary.com/blog/how_to_automatically_create_images_for_responsive_design 
+* [] see if you can resize the images in mobile - see cloudinary blog for that http://cloudinary.com/blog/how_to_automatically_create_images_for_responsive_design
+* [] Update user account info
+* [] delete user account
+* [] make sure user cannot update with an existing email or username
 
 
 
