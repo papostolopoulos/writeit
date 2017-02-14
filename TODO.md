@@ -191,6 +191,9 @@
 * [] Fix links css in about page and for mobile
 * [] see if you can resize the images in mobile - see cloudinary blog for that http://cloudinary.com/blog/how_to_automatically_create_images_for_responsive_design
 * [] make sure user cannot update his user account with an existing email or username
+* [] sign up confirmation email
+* [] forgot my password feature
+* [] mobile friendly wysiwyg icons. Decrease size of the top part of the app
 
 
 
