@@ -1,7 +1,13 @@
-## Server-side Review. 
+## writeIt
 
-We're going get a refresher of some of the commands we need to setup a server-side API. In the process, we're going to be building a simple blog.
-
-On [Day 1](./day1/readme.md) we're going to review setting up an express project, setup a few routes, and get our database setup with knex. We'll even through in some testing for good measure.
-
-On [Day 2](./day2/readme.md) we're going to build a login form, get the login and logout routes working, and do some review of front-end form data.
+writeIt is a two week capstone project that was written for a web development class. It includes the following web development languages and frameworks:
+- HTML for the front end basic content
+- Vanilla CSS for desktop and mobile experiences, items positioning, coloring, fonts, display
+- PostgresSQL for the database
+- Knex.js for the database migration, seeds and queries
+- Node.js for building the server
+- express.js for routes and rendering
+- handlebars.js for server side view templates
+- Vanilla JavaScript for user interactivity
+- Cloudinary Cloud Management for the upload of media files
+- Four lines of code in jQuery as required for the Cloudinary connectivity
