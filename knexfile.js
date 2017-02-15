@@ -11,6 +11,7 @@ module.exports = {
   }
 };
 
+// heroku addons:create heroku-postgresql:hobby-dev --app enigmatic-shore-39167
 
 //Original file
 // module.exports = {
