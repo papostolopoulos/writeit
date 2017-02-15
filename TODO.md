@@ -194,6 +194,8 @@
 * [] sign up confirmation email
 * [] forgot my password feature
 * [] mobile friendly wysiwyg icons. Decrease size of the top part of the app
+* [] deploy to Heroku
+* [] connect url to heroku link
 
 
 

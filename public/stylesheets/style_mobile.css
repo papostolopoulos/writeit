@@ -99,10 +99,6 @@
     display: block;
   }
 
-  #headerUserAreaDivMobile nav ul {
-
-  }
-
   #headerUserAreaDivMobile nav ul li {
     padding: 5px 5px 0 5px;
   }
@@ -304,6 +300,10 @@
   .uploadedImages {
     max-width: 320px;
     width: 320px
+  }
+
+  img {
+    max-width: 320px !important;
   }
 
 
