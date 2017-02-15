@@ -13,7 +13,7 @@ window.onload = ()=>{
 
 
     //IF THE WIDTH OF THE SCREEN IS 768 OR LESS
-    if (document.getElementsByTagName("body")[0].offsetWidth <= 768) {
+    if (document.getElementsByTagName("body")[0].offsetWidth <= 414) {
       //MODIFY THE IMAGES WIDTH TO RENDER IN MOBILE
       let iFrameImages = iFrameArticles[i].contentDocument.body.getElementsByTagName("img");
       for (let j = 0; j < iFrameImages.length; j++) {
