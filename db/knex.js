@@ -4,7 +4,7 @@ some data out of it*/
 //Create the environment
 //This is going to be the file that the environment is
 // going to be run in
-const environment = process.env.Node_ENV || 'development';
+const environment = process.env.NODE_ENV || 'development';
 console.log("Environment we are at is:", environment);
 const config = require('../knexfile')[environment];
 

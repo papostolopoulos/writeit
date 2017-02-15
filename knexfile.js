@@ -6,8 +6,8 @@ module.exports = {
     connection: 'postgres://localhost/blog'
   },
   production: {
-  client: 'postgresql',
-  connection: process.env.DATABASE_URL + '?ssl=true'
+    client: 'postgresql',
+    connection: process.env.DATABASE_URL + '?ssl=true'
   }
 };
 
