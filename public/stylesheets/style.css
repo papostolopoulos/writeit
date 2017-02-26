@@ -620,6 +620,19 @@ a[type="button"]:hover {
   text-align: center;
 }
 
+#imgEditorScreenshot{
+  /*001-Box Model*/
+	border: 2px solid rgb(221, 164, 72);
+  margin: 0 0 10px 10px;
+  width: 40%;
+  height: auto;
+	/*002-Positioning*/
+float: right;
+  /*003-Typography*/
+	/*004-Backgrounds*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5)
+}
+
 
 /*
   ========================================
