@@ -20,7 +20,7 @@
 
 ## Checklist
 * [X] Generate an Express App
-  * express --git --hds (create git ignore file and use handlebars as the views vehicle)
+  * express --git --hbs (create git ignore file and use handlebars as the views vehicle)
   * install dependencies (npm install)
   * npm start for the server (or nodemon)
 
